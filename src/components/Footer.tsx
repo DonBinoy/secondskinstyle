@@ -53,7 +53,7 @@ export default function Footer() {
                         {['pay_visa', 'pay_mastercard', 'pay_amex', 'pay_paypal'].map((payment) => (
                             <div key={payment} className="w-10 h-6 bg-zinc-800 rounded flex items-center justify-center text-[10px] text-zinc-500">
                                 {/* Placeholder for payment icons */}
-                                CARD
+                                CARDs
                             </div>
                         ))}
                     </div>
