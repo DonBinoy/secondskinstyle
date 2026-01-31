@@ -23,7 +23,7 @@ const CATEGORIES = [
     {
         id: 3,
         name: 'Accessories',
-        image: 'https://images.unsplash.com/photo-1556906781-9a412961d28c?q=80&w=2070&auto=format&fit=crop', // Keep external if no local image
+        image: '/image/bag.png', // Keep external if no local image
         link: '/accessories',
         description: 'Essential Gear'
     },
@@ -32,6 +32,15 @@ const CATEGORIES = [
 export default function CategoryGrid() {
     return (
         <section className="w-full py-0 bg-white border-t border-black">
+            <div className="py-12 px-6 md:px-12 border-b border-black flex flex-col items-center justify-center text-center">
+                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black mb-2">
+                    Shop By Category
+                </h2>
+                <div className="h-1 w-20 bg-black my-4" />
+                <p className="text-neutral-500 text-sm font-bold tracking-[0.2em] uppercase">
+                    Define Your Look
+                </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 w-full min-h-[90vh]">
                 {CATEGORIES.map((cat, index) => (
                     <Link href={cat.link} key={cat.id} className="relative group overflow-hidden block border-r border-black last:border-r-0 border-b md:border-b-0">

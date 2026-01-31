@@ -10,7 +10,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     {/* Brand Column */}
                     <div className="flex flex-col gap-6">
-                        <h2 className="text-3xl font-black uppercase tracking-tighter">SECONDSKIN</h2>
+                        <h2 className="text-3xl font-black uppercase tracking-tighter">SECONDSKINSTYLE</h2>
                         <p className="text-zinc-400 max-w-sm text-sm leading-relaxed">
                             Engineered for those who demand more. We exist to unite the conditioning community.
                         </p>
@@ -53,7 +53,7 @@ export default function Footer() {
                         {['pay_visa', 'pay_mastercard', 'pay_amex', 'pay_paypal'].map((payment) => (
                             <div key={payment} className="w-10 h-6 bg-zinc-800 rounded flex items-center justify-center text-[10px] text-zinc-500">
                                 {/* Placeholder for payment icons */}
-                                CARD
+                                CARDs
                             </div>
                         ))}
                     </div>

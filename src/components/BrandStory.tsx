@@ -84,7 +84,7 @@ export default function BrandStory() {
                         <TiltCard>
                             <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1544216717-3fbfcd4b93fb?q=80&w=1894&auto=format&fit=crop"
+                                    src="/image/women2.jpg"
                                     alt="Athlete training"
                                     fill
                                     className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
