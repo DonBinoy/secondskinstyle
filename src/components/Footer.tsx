@@ -10,7 +10,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     {/* Brand Column */}
                     <div className="flex flex-col gap-6">
-                        <h2 className="text-3xl font-black uppercase tracking-tighter">SECONDSKIN</h2>
+                        <h2 className="text-3xl font-black uppercase tracking-tighter">SECONDSKINSTYLE</h2>
                         <p className="text-zinc-400 max-w-sm text-sm leading-relaxed">
                             Engineered for those who demand more. We exist to unite the conditioning community.
                         </p>
