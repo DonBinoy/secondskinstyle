@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-zinc-950 text-white pt-20 pb-8">
+        <footer className="w-full bg-neutral-900 text-white pt-20 pb-8">
             <div className="max-w-[1920px] mx-auto px-6 md:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     {/* Brand Column */}
@@ -25,9 +25,8 @@ export default function Footer() {
 
                     {/* Links Columns */}
                     {[
-                        { title: "Help", links: ["FAQ", "Delivery Information", "Returns Policy", "Make A Return", "Orders"] },
-                        { title: "My Account", links: ["Login", "Register", "My Wishlist", "My Orders"] },
-                        { title: "Pages", links: ["Gymshark Central", "About Us", "Careers", "Transparency"] }
+                        { title: "Shop", links: ["Shorts", "Tops", "Pants", "Headwear", "Accessories"] },
+                        { title: "Help", links: ["FAQ", "Delivery", "Return Policy", "Register A Return", "Contact Us", "Payment Options"] }
                     ].map((col) => (
                         <div key={col.title}>
                             <h3 className="text-base font-bold uppercase tracking-wide mb-6">{col.title}</h3>
