@@ -2,9 +2,12 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import ProductShowcase from "@/components/ProductShowcase";
-import Editorial from "@/components/Editorial";
+import NewArrivals from "@/components/NewArrivals";
+import MediaGrid from "@/components/MediaGrid";
+import Scene3D from "@/components/Scene3D";
 import CategoryGrid from "@/components/CategoryGrid";
-import BrandStory from "@/components/BrandStory";
+import Testimonials from "@/components/Testimonials";
+import BrandStory from "@/components/BrandStory"; // Keep imported even if commented out in JSX
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
@@ -14,10 +17,13 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Marquee />
-      <ProductShowcase />
-      <Editorial />
+      <NewArrivals />
+      <Scene3D />
+      <MediaGrid />
+      {/* <ProductShowcase /> */}
       <CategoryGrid />
-      <BrandStory />
+      <Testimonials />
+      {/* <BrandStory /> */}
       <Newsletter />
       <Footer />
     </main>

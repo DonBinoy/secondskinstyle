@@ -2,72 +2,8 @@
 
 import { motion, type Easing } from 'framer-motion';
 import ProductCard from './ProductCard';
-
-const PRODUCTS = [
-    {
-        id: 1,
-        name: 'FlexShort Pro',
-        price: '€35.00',
-        tag: 'New',
-        image: '/image/flexshort.png'
-    },
-    {
-        id: 2,
-        name: 'AeroSkort',
-        price: '€35.00',
-        tag: 'New',
-        image: '/image/aeroskort.png'
-    },
-    {
-        id: 3,
-        name: 'Pulse Seamless Tank',
-        price: '€40.00',
-        originalPrice: '€50.00',
-        discount: '-20%',
-        image: '/image/pulseseamelesstank.png'
-    },
-    {
-        id: 4,
-        name: 'AeroFlex Seamless Tank',
-        price: '€40.00',
-        originalPrice: '€50.00',
-        discount: '-20%',
-        image: '/image/aerflexseamelesstank.png'
-    },
-    {
-        id: 5,
-        name: 'FlexPro Seamless',
-        price: '€40.00',
-        originalPrice: '€50.00',
-        discount: '-20%',
-        image: '/image/flexprosea,eless.png'
-    },
-    {
-        id: 6,
-        name: 'AirPulse™ Seamless Tank',
-        price: '€20.00',
-        originalPrice: '€25.00',
-        discount: '-20%',
-        tag: 'New',
-        image: '/image/airpulseseamless.png'
-    },
-    {
-        id: 7,
-        name: 'VoltMesh™ Performance Tee',
-        price: '€16.00',
-        originalPrice: '€20.00',
-        discount: '-20%',
-        image: '/image/perfomancetee.png'
-    },
-    {
-        id: 8,
-        name: 'NeoGrid™ Training Tee',
-        price: '€16.00',
-        originalPrice: '€20.00',
-        discount: '-20%',
-        image: '/image/trainingtee.png'
-    },
-];
+import Link from 'next/link';
+import { PRODUCTS } from '@/data/products';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -119,14 +55,16 @@ export default function ProductShowcase() {
                 >
                     {PRODUCTS.map((product) => (
                         <motion.div key={product.id} variants={itemVariants}>
-                            <ProductCard
-                                name={product.name}
-                                price={product.price}
-                                originalPrice={product.originalPrice}
-                                discount={product.discount}
-                                tag={product.tag}
-                                image={product.image}
-                            />
+                            <Link href={`/product/${product.id}`}>
+                                <ProductCard
+                                    name={product.name}
+                                    price={`${product.currency}${product.price.toFixed(2)}`}
+                                    originalPrice={product.originalPrice ? `${product.currency}${product.originalPrice.toFixed(2)}` : undefined}
+                                    discount={product.discount}
+                                    tag={product.tag}
+                                    image={product.image}
+                                />
+                            </Link>
                         </motion.div>
                     ))}
                 </motion.div>

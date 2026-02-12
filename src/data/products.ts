@@ -1,0 +1,177 @@
+export const PRODUCTS = [
+    {
+        id: "voltmesh-performance-tee",
+        name: "VoltMesh™ Performance Tee",
+        price: 16.00,
+        originalPrice: 20.00,
+        discount: "-20%",
+        currency: "€",
+        description: "Ultra-light, sleek, breathable tee built for peak intensity performance. Engineered with our signature VoltMesh™ technology for maximum airflow.",
+        details: [
+            "Sweat-wicking fabric keeps you dry",
+            "Seamless construction for zero chafing",
+            "Athletic fit tailored for movement",
+            "Reflective details for low-light visibility"
+        ],
+        image: "/image/perfomancetee.png",
+        images: ["/image/perfomancetee.png", "/image/trainingtee.png"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["Neon Green", "Black", "Grey"],
+        category: "Tops",
+        subcategory: "Performance",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "pulse-seamless-tank",
+        name: "Pulse Seamless Tank",
+        price: 40.00,
+        originalPrice: 50.00,
+        discount: "-20%",
+        currency: "€",
+        description: "An ultra-light race-day crop vest engineered for breathability, precision fit, and unrestricted movement.",
+        details: [
+            "4-way stretch material",
+            "Laser-cut ventilation zones",
+            "Cropped silhouette",
+            "High-neck design for coverage"
+        ],
+        image: "/image/pulseseamelesstank.png",
+        images: ["/image/pulseseamelesstank.png", "/image/airpulseseamless.png"],
+        sizes: ["XS", "S", "M", "L"],
+        colors: ["Lavender", "Black", "White"],
+        category: "Tops",
+        subcategory: "Seamless",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "aeroskort",
+        name: "AeroSkort",
+        price: 35.00,
+        tag: "New",
+        currency: "€",
+        description: "High-performance skort with integrated liner for maximum comfort and speed. The perfect blend of style and function.",
+        details: [
+            "Built-in compression shorts",
+            "Quick-drying outer layer",
+            "Hidden pockets for essentials",
+            "Wide waistband for secure fit"
+        ],
+        image: "/image/aeroskort.png",
+        images: ["/image/aeroskort.png", "/image/flexshort.png"],
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: ["White", "Black", "Pink"],
+        category: "Bottoms",
+        subcategory: "Skirts",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "flexshort-pro",
+        name: "FlexShort Pro",
+        price: 35.00,
+        tag: "New",
+        currency: "€",
+        description: "Engineered for maximum mobility, the FlexShort Pro features a lightweight, 4-way stretch fabric that moves with you. Perfect for high-intensity interval training or a casual run.",
+        details: [
+            "Lightweight woven fabric",
+            "Side slit for range of motion",
+            "Drawcord waistband",
+            "Zippered back pocket"
+        ],
+        image: "/image/flexshort.png",
+        images: ["/image/flexshort.png", "/image/aeroskort.png"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["Black", "Graphite", "Midnight Blue"],
+        category: "Bottoms",
+        subcategory: "Shorts",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "aeroflex-seamless-tank",
+        name: "AeroFlex Seamless Tank",
+        price: 40.00,
+        originalPrice: 50.00,
+        discount: "-20%",
+        currency: "€",
+        description: "Seamless comfort meets aerodynamic design. The AeroFlex tank is designed to feel like a second skin.",
+        details: [
+            "Seamless knitting technology",
+            "Body-mapping texture",
+            "Racerback design",
+            "Anti-odor treatment"
+        ],
+        image: "/image/aerflexseamelesstank.png",
+        images: ["/image/aerflexseamelesstank.png", "/image/pulseseamelesstank.png"],
+        sizes: ["XS", "S", "M", "L"],
+        colors: ["Mint", "White", "Black"],
+        category: "Tops",
+        subcategory: "Seamless",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "flexpro-seamless",
+        name: "FlexPro Seamless",
+        price: 40.00,
+        originalPrice: 50.00,
+        discount: "-20%",
+        currency: "€",
+        description: "Experience uliimate flexibility with FlexPro Seamless. Designed for yoga, pilates, and low-impact training.",
+        details: [
+            "Buttery soft fabric",
+            "High-waisted fit",
+            "Squat-proof opacity",
+            "Minimalist branding"
+        ],
+        image: "/image/flexprosea,eless.png",
+        images: ["/image/flexprosea,eless.png", "/image/trainingtee.png"],
+        sizes: ["XS", "S", "M", "L", "XL"],
+        colors: ["Grey", "Black"],
+        category: "Bottoms",
+        subcategory: "Seamless",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "airpulse-seamless-tank",
+        name: "AirPulse™ Seamless Tank",
+        price: 20.00,
+        originalPrice: 25.00,
+        discount: "-20%",
+        tag: "New",
+        currency: "€",
+        description: "Lightweight and airy, the AirPulse tank keeps you cool when the heat is on.",
+        details: [
+            "Open-knit structure for ventilation",
+            "Relaxed fit",
+            "Dropped armholes",
+            "Quick-dry technology"
+        ],
+        image: "/image/airpulseseamless.png",
+        images: ["/image/airpulseseamless.png", "/image/pulseseamelesstank.png"],
+        sizes: ["XS", "S", "M", "L"],
+        colors: ["Blue", "Black", "White"],
+        category: "Tops",
+        subcategory: "Performance",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "neogrid-training-tee",
+        name: "NeoGrid™ Training Tee",
+        price: 16.00,
+        originalPrice: 20.00,
+        discount: "-20%",
+        currency: "€",
+        description: "The NeoGrid Tee features a structured grid fabric that lifts sweat away from the skin for faster evaporation.",
+        details: [
+            "Grid texture fabric",
+            "Raglan sleeves",
+            "Flatlock seams",
+            "Durable construction"
+        ],
+        image: "/image/trainingtee.png",
+        images: ["/image/trainingtee.png", "/image/perfomancetee.png"],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        colors: ["Red", "Black", "Navy"],
+        category: "Tops",
+        subcategory: "Training",
+        modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    }
+];
