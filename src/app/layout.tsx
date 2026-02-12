@@ -27,6 +27,8 @@ export const metadata: Metadata = {
   description: "Experience the ultimate in performance and style with SecondSkinStyle.",
 };
 
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,12 +39,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} antialiased bg-white text-black cursor-none`}
       >
-        <SmoothScroll>
-          <Preloader />
-          <CustomCursor />
-          <GrainOverlay />
-          {children}
-        </SmoothScroll>
+        <CartProvider>
+          <SmoothScroll>
+            <Preloader />
+            <CustomCursor />
+            <GrainOverlay />
+            {children}
+          </SmoothScroll>
+        </CartProvider>
       </body>
     </html>
   );

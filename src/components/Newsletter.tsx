@@ -5,51 +5,44 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Newsletter() {
     return (
-        <section className="w-full py-24 bg-zinc-900 border-t border-white/10 overflow-hidden relative">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-20"
-                style={{
-                    backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
-                    backgroundSize: '40px 40px'
-                }}
-            />
+        <section className="w-full py-12 md:py-16 bg-neutral-950 text-white border-t border-neutral-900">
+            <div className="max-w-[1920px] mx-auto px-4 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
 
-            <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mb-6"
-                >
-                    Join the Community
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="text-zinc-400 text-lg mb-10 font-light"
-                >
-                    Unlock exclusive content, early access to drops, and 10% off your first order.
-                </motion.p>
+                {/* Left Side: Compact Header */}
+                <div className="w-full md:w-auto text-center md:text-left">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-black uppercase tracking-widest text-white mb-2"
+                    >
+                        New Drops
+                    </motion.h2>
+                    <p className="text-neutral-500 text-sm font-medium tracking-wide uppercase">
+                        Sign up for early access to exclusive launches.
+                    </p>
+                </div>
 
-                <motion.form
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto"
-                >
-                    <input
-                        type="email"
-                        placeholder="ENTER YOUR EMAIL"
-                        className="flex-1 bg-transparent border-b border-zinc-700 text-white py-4 px-2 focus:outline-none focus:border-white transition-colors placeholder:text-zinc-600 font-bold tracking-wider text-sm uppercase"
-                    />
-                    <button className="bg-white text-black px-8 py-4 font-black uppercase tracking-widest hover:bg-neutral-200 transition-colors flex items-center justify-center gap-2 group">
-                        Sign Up
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                </motion.form>
+                {/* Right Side: Simple Inline Form */}
+                <div className="w-full md:flex-1 max-w-xl">
+                    <motion.form
+                        initial={{ opacity: 0, x: 10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="relative flex items-center"
+                    >
+                        <input
+                            type="email"
+                            placeholder="ENTER YOUR EMAIL"
+                            className="w-full bg-transparent border-b border-neutral-800 text-white py-3 pr-12 focus:outline-none focus:border-white transition-colors placeholder:text-neutral-600 font-bold tracking-wider text-sm uppercase"
+                        />
+                        <button className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-neutral-400 transition-colors uppercase font-bold tracking-widest text-xs flex items-center gap-2 group">
+                            Subscribe
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    </motion.form>
+                </div>
             </div>
         </section>
     );

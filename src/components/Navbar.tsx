@@ -5,11 +5,17 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ShoppingBag, Search, User, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/context/CartContext';
 
-export default function Navbar() {
+export default function Navbar({ solid = false }: { solid?: boolean }) {
     const { scrollY } = useScroll();
-    const [scrolled, setScrolled] = useState(false);
+    const [scrolled, setScrolled] = useState(solid);
     const [hidden, setHidden] = useState(false);
+    const { cartCount } = useCart();
+
+    useEffect(() => {
+        if (solid) setScrolled(true);
+    }, [solid]);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() || 0;
@@ -22,7 +28,7 @@ export default function Navbar() {
         if (latest > 50) {
             setScrolled(true);
         } else {
-            setScrolled(false);
+            setScrolled(solid);
         }
     });
 
@@ -67,10 +73,14 @@ export default function Navbar() {
                 <button className="hidden sm:block p-2 hover:opacity-70 transition-opacity">
                     <User className="w-5 h-5" />
                 </button>
-                <button className="p-2 hover:opacity-70 transition-opacity relative">
+                <Link href="/cart" className="p-2 hover:opacity-70 transition-opacity relative">
                     <ShoppingBag className="w-5 h-5" />
-                    <span className="absolute top-1 right-0 w-2 h-2 bg-red-500 rounded-full" />
-                </button>
+                    {cartCount > 0 && (
+                        <span className="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-[10px] flex items-center justify-center rounded-full font-black tracking-tighter ring-2 ring-white">
+                            {cartCount}
+                        </span>
+                    )}
+                </Link>
             </div>
         </motion.nav>
     );
