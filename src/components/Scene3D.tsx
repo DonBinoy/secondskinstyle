@@ -4,7 +4,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Environment, ContactShadows, Text, Sparkles, PerspectiveCamera } from '@react-three/drei';
 import { useRef, useMemo, useState } from 'react';
 import * as THREE from 'three';
-import { motion } from 'framer-motion-3d';
 
 function LiquidMetal() {
     const meshRef = useRef<THREE.Mesh>(null);
@@ -64,14 +63,7 @@ function FloatingStandard() {
 
     return (
         <group ref={textRef}>
-            <Text
-                position={[0, 0, 2]}
-                fontSize={0.5}
-                font="/fonts/Inter-Bold.ttf" // Would need a font file, defaulting to system font logic usually needs a URL. using safe default.
-            // If font fails, it might not render text. replacing with SAFE HTML overlay instead.
-            >
-                {/* Leaving empty to use HTML overlay for better typography control */}
-            </Text>
+            {/* Using HTML overlay in Scene3D for better typography control */}
         </group>
     )
 }

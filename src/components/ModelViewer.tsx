@@ -10,8 +10,6 @@ export default function ModelViewer({ modelUrl }: { modelUrl?: string }) {
                 className="w-full h-full"
                 frameBorder="0"
                 allowFullScreen
-                mozallowfullscreen="true"
-                webkitallowfullscreen="true"
                 allow="autoplay; fullscreen; xr-spatial-tracking"
                 src={modelUrl}
             />
