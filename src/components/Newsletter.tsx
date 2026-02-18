@@ -14,7 +14,7 @@ export default function Newsletter() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-2xl md:text-3xl font-black uppercase tracking-widest text-white mb-2"
+                        className="text-2xl md:text-3xl font-semibold tracking-widest text-white mb-2"
                     >
                         New Drops
                     </motion.h2>

@@ -35,7 +35,7 @@ export default function Hero() {
                     <h2 className="mb-4 text-xl font-bold tracking-widest text-white uppercase md:text-2xl">
                         New Collection
                     </h2>
-                    <h1 className="mb-8 text-5xl font-black tracking-tight text-white uppercase md:text-7xl lg:text-8xl">
+                    <h1 className="mb-8 text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-8xl">
                         Unleash <br /> Your Power
                     </h1>
                     <div className="flex gap-4">

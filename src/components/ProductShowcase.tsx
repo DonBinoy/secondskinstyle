@@ -38,7 +38,7 @@ export default function ProductShowcase() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="flex items-end justify-between mb-10"
                 >
-                    <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-neutral-900 leading-none">
+                    <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 leading-none">
                         Womens <br /> New Releases
                     </h2>
                     <a href="#" className="hidden md:block text-sm font-bold uppercase tracking-widest text-neutral-900 border-b-2 border-neutral-900 pb-1 hover:text-neutral-600 hover:border-neutral-600 transition-all">

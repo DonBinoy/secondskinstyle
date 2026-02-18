@@ -132,7 +132,7 @@ export default function MediaGrid() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-6xl md:text-9xl font-black uppercase tracking-tighter text-black"
+                        className="text-6xl md:text-9xl font-semibold tracking-tighter text-black"
                     >
                         Journal
                     </motion.h2>
@@ -212,7 +212,7 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex }: any) {
             <div className="absolute bottom-0 left-0 p-8 w-full z-20 flex flex-col justify-end h-full pointer-events-none">
                 <div className="overflow-hidden">
                     <motion.h3
-                        className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mix-blend-difference"
+                        className="text-3xl md:text-5xl font-bold uppercase tracking-tighter text-white mix-blend-difference"
                         initial={{ y: "100%" }}
                         animate={{ y: isHovered ? 0 : "100%" }}
                         transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
@@ -237,7 +237,7 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex }: any) {
                     "absolute bottom-8 left-8 transition-opacity duration-300 md:hidden",
                     isHovered ? "opacity-0" : "opacity-100"
                 )}>
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white">{item.title}</h3>
+                    <h3 className="text-2xl font-bold uppercase tracking-tight text-white">{item.title}</h3>
                 </div>
             </div>
 
@@ -248,7 +248,7 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex }: any) {
                 animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.5 }}
                 transition={{ duration: 0.3 }}
             >
-                <span className="text-sm font-black uppercase tracking-widest text-white">View</span>
+                <span className="text-sm font-bold uppercase tracking-widest text-white">View</span>
             </motion.div>
 
         </motion.div>

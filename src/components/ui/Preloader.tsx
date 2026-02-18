@@ -29,7 +29,7 @@ export default function Preloader() {
                             initial={{ y: 0 }}
                             exit={{ y: "-100%" }}
                             transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
-                            className="text-white text-5xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-white text-5xl md:text-8xl font-bold uppercase tracking-tighter"
                         >
                             <motion.span
                                 initial={{ opacity: 0, y: 100 }}

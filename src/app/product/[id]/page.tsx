@@ -9,6 +9,9 @@ import { Minus, Plus, Star, ArrowRight, Truck, ShieldCheck, RefreshCw, Box, Imag
 import { cn } from '@/lib/utils';
 import { PRODUCTS } from '@/data/products';
 import ModelViewer from '@/components/ModelViewer';
+import SizeGuideDrawer from '@/components/SizeGuideDrawer';
+import ProductFeatures from '@/components/ProductFeatures';
+import LifestyleGrid from '@/components/LifestyleGrid';
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -47,12 +50,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     const [activeImage, setActiveImage] = useState(0);
     const [show3D, setShow3D] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
+    const [showSizeGuide, setShowSizeGuide] = useState(false);
 
     const { addToCart } = useCart();
     const router = useRouter();
 
     // Get recommended products (3 items)
-    const recommendedProducts = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
+    const recommendedProducts = PRODUCTS.filter(p => p.id !== product.id).slice(0, 6);
 
     const handleQuantity = (type: 'inc' | 'dec') => {
         if (type === 'dec' && quantity > 1) setQuantity(q => q - 1);
@@ -108,147 +112,99 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                 <div className="flex flex-col lg:flex-row gap-16 xl:gap-24">
 
-                    {/* Left: Image Gallery */}
-                    <div className="w-full lg:w-3/5">
-                        <div className="flex flex-col-reverse lg:flex-row gap-4 h-[calc(100vh-200px)] min-h-[500px] sticky top-32">
-                            {/* Thumbnails */}
-                            <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 hide-scrollbar w-full lg:w-24 shrink-0">
-                                {(product.images || [product.image]).map((img, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={() => { setActiveImage(idx); setShow3D(false); }}
-                                        className={cn(
-                                            "relative w-20 h-24 lg:w-24 lg:h-32 border transition-all duration-300 shrink-0",
-                                            activeImage === idx && !show3D
-                                                ? "border-black opacity-100"
-                                                : "border-transparent opacity-60 hover:opacity-100"
-                                        )}
-                                    >
-                                        <Image
-                                            src={img}
-                                            alt={`${product.name} view ${idx + 1}`}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </button>
-                                ))}
+                    {/* Left: Image Gallery (Swapped) */}
+                    <div className="w-full lg:w-3/5 flex flex-col gap-20">
+                        {/* 1. Main Image */}
+                        <div className="relative w-full aspect-[3/4] bg-neutral-100 overflow-hidden group">
+                            <Image
+                                src={product.image}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+
+                        {/* 2. Description (Moved from Right) */}
+                        <div className="flex flex-col gap-6 px-4 md:px-0 max-w-2xl">
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Design Note</h3>
+                            <p className="text-neutral-900 leading-relaxed font-light text-xl md:text-2xl">
+                                "{product.description}"
+                            </p>
+                        </div>
+
+                        {/* 3. Original Gallery Row */}
+                        <div className="flex flex-col lg:flex-row gap-2 h-[80vh] min-h-[500px] overflow-hidden">
+                            {/* Video Column */}
+                            {product.video && (
+                                <div className="relative flex-1 bg-neutral-100 h-full">
+                                    <video
+                                        src={product.video}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                </div>
+                            )}
+
+                            {/* Image 1 Column (Front) */}
+                            <div className="relative flex-1 bg-neutral-50 h-full group">
+                                <Image
+                                    src={product.images?.[0] || product.image}
+                                    alt={`${product.name} Front View`}
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
 
-                            {/* Main Display Area */}
-                            <div className="relative flex-1 bg-neutral-50 overflow-hidden group">
-                                <AnimatePresence mode="wait">
-                                    {show3D ? (
-                                        <motion.div
-                                            key="3d-model"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            className="w-full h-full"
-                                        >
-                                            <ModelViewer modelUrl={product.modelEmbedUrl} />
-                                        </motion.div>
-                                    ) : (
-                                        <motion.div
-                                            key="image"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="relative w-full h-full"
-                                        >
-                                            <Image
-                                                src={(product.images || [product.image])[activeImage]}
-                                                alt={product.name}
-                                                fill
-                                                className="object-cover"
-                                                priority
-                                            />
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-
-                                {/* Toggle Button */}
-                                {product.modelEmbedUrl && (
-                                    <button
-                                        onClick={() => setShow3D(!show3D)}
-                                        className="absolute top-4 right-4 z-20 bg-white shadow-xl p-3 rounded-full hover:bg-black hover:text-white transition-all duration-300 group/btn"
-                                    >
-                                        {show3D ? (
-                                            <ImageIcon className="w-5 h-5" />
-                                        ) : (
-                                            <Box className="w-5 h-5" />
-                                        )}
-                                        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-black text-white text-[10px] uppercase font-bold px-3 py-1.5 rounded tracking-widest opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                            {show3D ? "Show Product" : "View in 3D"}
-                                        </span>
-                                    </button>
-                                )}
+                            {/* Image 2 Column (Back) */}
+                            <div className="relative flex-1 bg-neutral-50 h-full group">
+                                <Image
+                                    src={product.images?.[1] || product.image}
+                                    alt={`${product.name} Back View`}
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                     </div>
 
-                    {/* Right: Product Details */}
-                    <div className="w-full lg:w-2/5">
-                        <div className="sticky top-32 flex flex-col gap-10">
+                    {/* Right: Product Details (Swapped) */}
+                    <div className="w-full lg:w-2/5 lg:pr-10 xl:pr-20">
+                        <div className="sticky top-32 flex flex-col gap-12">
 
                             {/* Header */}
-                            <div className="border-b border-neutral-100 pb-10">
+                            <div className="border-b border-neutral-100 pb-8">
                                 <Link href="#reviews" className="flex items-center gap-2 mb-4 group w-fit">
                                     <div className="flex text-black">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className="w-3.5 h-3.5 fill-black" />
                                         ))}
                                     </div>
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400 group-hover:text-black transition-colors">128 Reviews</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 group-hover:text-black transition-colors">128 Reviews</span>
                                 </Link>
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-black mb-6 leading-none italic">
+                                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4 leading-tight">
                                     {product.name}
                                 </h1>
-                                <p className="text-3xl font-bold text-black font-mono tracking-tighter">
-                                    {product.currency}{product.price.toFixed(2)}
+                                <p className="text-xl md:text-2xl font-bold text-black opacity-80">
+                                    {product.price.toFixed(2)} {product.currency}
                                 </p>
+                                <p className="text-[10px] text-neutral-400 mt-2 font-medium">Taxes and duties included</p>
                             </div>
 
-                            {/* Description */}
-                            <div className="flex flex-col gap-4">
-                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">Design Note</h3>
-                                <p className="text-neutral-600 leading-relaxed font-light text-xl italic max-w-lg">
-                                    "{product.description}"
-                                </p>
-                            </div>
 
-                            {/* Color Selector */}
-                            {product.colors && (
-                                <div>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black mb-6 block">
-                                        Select Color <span className="text-neutral-300 font-normal ml-3">— {selectedColor}</span>
-                                    </span>
-                                    <div className="flex gap-5">
-                                        {product.colors.map((color) => (
-                                            <button
-                                                key={color}
-                                                onClick={() => setSelectedColor(color)}
-                                                className={cn(
-                                                    "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-                                                    selectedColor === color
-                                                        ? "ring-1 ring-offset-4 ring-black scale-110"
-                                                        : "hover:scale-105"
-                                                )}
-                                                title={color}
-                                            >
-                                                <span className={cn("w-full h-full rounded-full border border-black/5", getColorClass(color))} />
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
 
                             {/* Size Selector */}
                             {product.sizes && (
                                 <div>
                                     <div className="flex justify-between items-center mb-6">
-                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black">Select Size</span>
-                                        <button className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black underline transition-colors">
+                                        <span className="text-sm font-bold text-black">Size</span>
+                                        <button
+                                            onClick={() => setShowSizeGuide(true)}
+                                            className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black underline transition-colors"
+                                        >
                                             Size Guide
                                         </button>
                                     </div>
@@ -258,7 +214,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                                 key={size}
                                                 onClick={() => { setSelectedSize(size); document.getElementById('size-error')?.classList.add('hidden'); }}
                                                 className={cn(
-                                                    "h-16 border flex items-center justify-center text-xs font-black transition-all duration-300",
+                                                    "h-14 border flex items-center justify-center text-xs font-bold transition-all duration-300",
                                                     selectedSize === size
                                                         ? "border-black bg-black text-white"
                                                         : "border-neutral-100 text-black hover:border-black/30"
@@ -268,18 +224,18 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                             </button>
                                         ))}
                                     </div>
-                                    <p className="text-red-500 text-[10px] mt-3 font-bold uppercase tracking-widest hidden" id="size-error">Please select a size</p>
+                                    <p className="text-red-500 text-[10px] mt-4 font-bold uppercase tracking-widest hidden" id="size-error">Please select a size</p>
                                 </div>
                             )}
 
                             {/* Actions */}
-                            <div className="flex flex-col gap-4 mt-4">
+                            <div className="flex flex-col gap-4 mt-6">
                                 <div className="flex gap-4">
-                                    <div className="flex items-center border border-neutral-100 px-6 h-18 w-40 justify-between">
+                                    <div className="flex items-center border border-neutral-100 px-6 h-16 w-32 justify-between">
                                         <button onClick={() => handleQuantity('dec')} className="p-2 hover:opacity-50 transition-opacity">
                                             <Minus className="w-4 h-4" />
                                         </button>
-                                        <span className="font-bold text-xl font-mono">{quantity}</span>
+                                        <span className="font-bold text-lg">{quantity}</span>
                                         <button onClick={() => handleQuantity('inc')} className="p-2 hover:opacity-50 transition-opacity">
                                             <Plus className="w-4 h-4" />
                                         </button>
@@ -287,14 +243,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                                     <button
                                         onClick={handleAddToCart}
-                                        className="flex-1 h-18 bg-black text-white font-black uppercase tracking-[0.2em] text-[10px] hover:bg-neutral-800 transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl"
+                                        className="flex-1 h-16 bg-black text-white font-bold uppercase tracking-[0.1em] text-xs hover:bg-neutral-800 transition-all duration-300 flex items-center justify-center gap-3"
                                     >
-                                        Add to Cart
+                                        Add to Bag
                                     </button>
                                 </div>
                                 <button
                                     onClick={handleBuyNow}
-                                    className="w-full border border-black text-black h-18 font-black uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white transition-all duration-500"
+                                    className="w-full border border-black text-black h-16 font-bold uppercase tracking-[0.1em] text-xs hover:bg-black hover:text-white transition-all duration-500"
                                 >
                                     Buy Now
                                 </button>
@@ -304,7 +260,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             {product.details && (
                                 <div className="border-t border-neutral-100 mt-10">
                                     <details className="group py-6 cursor-pointer" open>
-                                        <summary className="flex items-center justify-between font-black uppercase tracking-[0.3em] text-[10px] list-none select-none">
+                                        <summary className="flex items-center justify-between font-bold uppercase tracking-[0.3em] text-[10px] list-none select-none">
                                             Product Details
                                             <Plus className="w-3 h-3 group-open:hidden" />
                                             <Minus className="w-3 h-3 hidden group-open:block" />
@@ -327,53 +283,100 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                 </div>
                             )}
 
-                            {/* "Complete the Look" Area */}
-                            <div className="mt-16 border-t border-black pt-16">
-                                <h3 className="font-black uppercase tracking-[0.3em] text-[10px] mb-10 flex items-center gap-5 italic">
-                                    Complete the Look
-                                    <div className="h-px bg-neutral-100 flex-1" />
-                                </h3>
-                                <div className="flex flex-col gap-8">
-                                    {recommendedProducts.map((rec) => (
-                                        <Link href={`/product/${rec.id}`} key={rec.id} className="group flex gap-8 items-center">
-                                            <div className="relative w-28 h-36 bg-neutral-50 shrink-0 overflow-hidden border border-neutral-100">
-                                                <Image
-                                                    src={rec.image}
-                                                    alt={rec.name}
-                                                    fill
-                                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                                />
-                                            </div>
-                                            <div className="flex-1 flex flex-col justify-center">
-                                                <h4 className="font-black text-sm uppercase tracking-tight group-hover:text-neutral-600 transition-colors">
-                                                    {rec.name}
-                                                </h4>
-                                                <p className="text-neutral-400 text-[10px] font-bold mt-2 uppercase tracking-widest italic">
-                                                    {rec.category} / {rec.subcategory}
-                                                </p>
-                                                <div className="flex items-center justify-between mt-6">
-                                                    <p className="font-bold text-lg font-mono tracking-tighter">{rec.currency}{rec.price.toFixed(2)}</p>
-                                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black border-b border-black pb-1 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">View Product</span>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
+                {/* "Complete the Look" Area - Moved Below Main Section */}
+                <div className="mt-32 border-t border-neutral-100 pt-20">
+                    <h3 className="font-bold uppercase tracking-[0.3em] text-[10px] mb-10 flex items-center gap-5">
+                        Complete the Look
+                        <div className="h-px bg-neutral-100 flex-1" />
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8">
+                        {recommendedProducts.map((rec) => (
+                            <Link href={`/product/${rec.id}`} key={rec.id} className="group flex flex-col gap-6">
+                                <div className="relative w-full aspect-[3/4] bg-neutral-50 overflow-hidden border border-neutral-100">
+                                    <Image
+                                        src={rec.image}
+                                        alt={rec.name}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <div className="bg-white/90 backdrop-blur-sm px-4 py-3 text-[10px] font-black uppercase tracking-widest text-black transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                            View Product
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col items-center text-center gap-2">
+                                    <h4 className="font-black text-sm uppercase tracking-tight group-hover:text-neutral-600 transition-colors">
+                                        {rec.name}
+                                    </h4>
+                                    <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest italic">
+                                        {rec.subcategory}
+                                    </p>
+                                    <p className="font-bold text-lg font-mono tracking-tighter">{rec.currency}{rec.price.toFixed(2)}</p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <LifestyleGrid />
+            <ProductFeatures />
+
+            <div className="max-w-[1920px] mx-auto px-4 md:px-10 pb-20">
                 {/* Section Separation */}
-                <div className="mt-40 h-32 border-l border-neutral-100 ml-1/2 hidden lg:block" />
+                <div className="mt-20 h-16 border-l border-neutral-100 ml-1/2 hidden lg:block" />
+
+                {/* Why this Fabric Video Section - Redesigned */}
+                <div className="mt-20 mb-12 text-center">
+                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter">Why this Fabric</h2>
+                </div>
+                <section className="relative w-full min-h-screen overflow-hidden bg-white flex flex-col lg:flex-row">
+                    {/* Left: Content */}
+                    <div className="w-full lg:w-2/5 p-10 md:p-16 lg:p-20 flex flex-col justify-center text-black">
+                        <div className="flex flex-col gap-10">
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400">
+                                {product.category} {product.subcategory}
+                            </span>
+
+                            <h2 className="text-4xl md:text-5xl font-medium leading-tight">
+                                Performance Meets /<br />
+                                Innovation
+                            </h2>
+
+                            <p className="text-base md:text-lg font-normal leading-relaxed text-neutral-800 max-w-md">
+                                Every detail of the {product.name} has been engineered for peak performance. Advanced moisture-wicking technology combines with premium fabrics to deliver unmatched comfort and durability in the most demanding conditions.
+                            </p>
+
+                            <p className="text-base md:text-lg font-normal leading-relaxed text-neutral-800 max-w-md">
+                                Designed with athletes, tested by professionals, crafted for everyone who demands more from their gear.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right: Video */}
+                    <div className="w-full lg:w-3/5 relative min-h-[60vh] lg:min-h-full">
+                        <video
+                            src="/video/promo.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    </div>
+                </section>
 
                 {/* Reviews Section */}
-                <section id="reviews" className="mt-32 max-w-6xl mx-auto border-y border-neutral-100 py-32 relative overflow-hidden">
+                <section id="reviews" className="mt-0 max-w-6xl mx-auto border-y border-neutral-100 py-20 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-12 font-black text-[150px] text-neutral-50 select-none pointer-events-none uppercase italic leading-none">Reviews</div>
 
                     <div className="text-center mb-32 relative z-10">
-                        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 italic leading-none">Product Reviews</h2>
+                        <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter mb-10 leading-none">Product Reviews</h2>
                         <div className="flex flex-col items-center gap-6">
                             <div className="flex text-black gap-1.5">
                                 {[...Array(5)].map((_, i) => (
@@ -390,42 +393,70 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-px bg-neutral-100 border border-neutral-100 relative z-10">
+                    <div className="grid md:grid-cols-3 gap-6 relative z-10">
                         {[
                             {
                                 name: "Alex M.",
                                 rating: 5,
-                                title: "ELITE QUALITY",
-                                content: "Unmatched performance. The fit is surgical and the material feels like a second skin. Worth every penny.",
+                                title: "Game Changer",
+                                content: "The fit is perfect and the quality is outstanding. I've never felt more confident during my workouts.",
                                 date: "Feb 2026"
                             },
                             {
                                 name: "Sarah K.",
                                 rating: 5,
-                                title: "PURE COMFORT",
-                                content: "A significant investment but the quality is undeniable. Breathable, durable, and stylish. Perfect for training.",
+                                title: "Worth Every Penny",
+                                content: "Premium quality that you can feel. Breathable, comfortable, and looks amazing. Highly recommended!",
+                                date: "Feb 2026"
+                            },
+                            {
+                                name: "Marcus T.",
+                                rating: 5,
+                                title: "Best Purchase",
+                                content: "I've tried many brands but this is by far the best. The attention to detail is incredible.",
                                 date: "Jan 2026"
+                            },
+                            {
+                                name: "Jessica L.",
+                                rating: 4,
+                                title: "Excellent Quality",
+                                content: "Love the design and fit. Only complaint is I wish I bought more colors!",
+                                date: "Jan 2026"
+                            },
+                            {
+                                name: "David R.",
+                                rating: 5,
+                                title: "Top Tier",
+                                content: "Professional grade quality. The fabric technology really makes a difference in performance.",
+                                date: "Dec 2025"
+                            },
+                            {
+                                name: "Emily W.",
+                                rating: 5,
+                                title: "Obsessed",
+                                content: "These have become my go-to for everything. Gym, running, even casual wear. So versatile!",
+                                date: "Dec 2025"
                             }
                         ].map((review, idx) => (
-                            <div key={idx} className="bg-white p-16 hover:bg-neutral-50/50 transition-colors duration-500">
-                                <div className="flex flex-col gap-6 mb-12">
-                                    <div className="flex text-black gap-1">
+                            <div key={idx} className="bg-white border border-neutral-100 p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col gap-4">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex text-black gap-0.5">
                                         {[...Array(review.rating)].map((_, i) => (
-                                            <Star key={i} className="w-3.5 h-3.5 fill-black" />
+                                            <Star key={i} className="w-4 h-4 fill-black" />
                                         ))}
                                     </div>
-                                    <span className="text-[10px] text-neutral-300 font-bold uppercase tracking-[0.3em]">{review.date}</span>
+                                    <span className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider">{review.date}</span>
                                 </div>
-                                <h3 className="font-black text-sm uppercase tracking-[0.3em] mb-4 italic text-neutral-700">{review.title}</h3>
-                                <p className="text-neutral-500 font-light leading-relaxed mb-12 text-xl italic leading-relaxed">"{review.content}"</p>
-                                <div className="flex items-center gap-5">
-                                    <div className="w-12 h-12 border border-black flex items-center justify-center font-black text-sm italic">
+                                <h3 className="font-bold text-base text-black">{review.title}</h3>
+                                <p className="text-neutral-600 text-sm leading-relaxed">"{review.content}"</p>
+                                <div className="flex items-center gap-3 mt-2 pt-4 border-t border-neutral-100">
+                                    <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs">
                                         {review.name.split(' ')[0][0]}
                                     </div>
-                                    <div className="flex flex-col gap-1">
-                                        <span className="font-black text-[10px] uppercase tracking-[0.3em]">{review.name}</span>
-                                        <span className="text-[8px] text-green-600 font-black uppercase tracking-widest flex items-center gap-2">
-                                            <ShieldCheck className="w-2.5 h-2.5" /> Verified Purchase
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-xs text-black">{review.name}</span>
+                                        <span className="text-[9px] text-green-600 font-semibold uppercase tracking-wide flex items-center gap-1">
+                                            <ShieldCheck className="w-3 h-3" /> Verified
                                         </span>
                                     </div>
                                 </div>
@@ -434,36 +465,44 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     </div>
 
                     <div className="mt-24 text-center">
-                        <button className="bg-black text-white px-16 py-7 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-neutral-800 transition-all duration-500 shadow-2xl italic">
+                        <button className="bg-black text-white px-16 py-7 font-semibold tracking-[0.3em] text-[10px] hover:bg-neutral-800 transition-all duration-500 shadow-2xl">
                             Show All Reviews
                         </button>
                     </div>
                 </section>
 
                 {/* Ecosystem Navigation */}
-                <section className="mt-40 border-t border-neutral-100 pt-32">
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-20">
-                        <div className="flex-1">
-                            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-neutral-300 mb-12">Explore Ecosystem</h2>
-                            <div className="flex flex-wrap gap-12 md:gap-24">
+                <section className="mt-20 border-t border-neutral-100 pt-16 pb-20">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-10">
+                        <div className="flex-1 w-full">
+                            <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">Explore Ecosystem</h2>
+                            <div className="flex flex-col gap-10 md:flex-row w-full md:gap-32">
                                 <div className="flex flex-col gap-4">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Main Range</span>
-                                    <Link href="#" className="group flex items-center gap-4">
-                                        <span className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic group-hover:translate-x-3 transition-transform duration-500">{product.category}</span>
-                                        <ArrowRight className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                                    </Link>
+                                    <span className="text-xs font-medium text-neutral-400">Categories</span>
+                                    <div className="flex flex-col gap-2">
+                                        {['Men', 'Women'].map((cat) => (
+                                            <Link key={cat} href="#" className="group flex items-center gap-3">
+                                                <span className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-900 group-hover:opacity-50 transition-opacity duration-300">{cat}</span>
+                                                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-neutral-900" />
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                                 <div className="flex flex-col gap-4">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-neutral-400">Collection</span>
-                                    <Link href="#" className="group flex items-center gap-4">
-                                        <span className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic group-hover:translate-x-3 transition-transform duration-500">{product.subcategory}</span>
-                                        <ArrowRight className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                                    </Link>
+                                    <span className="text-xs font-medium text-neutral-400">Sub Categories</span>
+                                    <div className="flex flex-col gap-2">
+                                        {['Tanktop', 'Roundneck', 'Shorts'].map((sub) => (
+                                            <Link key={sub} href="#" className="group flex items-center gap-3">
+                                                <span className="text-2xl md:text-3xl font-medium tracking-tight text-neutral-900 group-hover:opacity-50 transition-opacity duration-300">{sub}</span>
+                                                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-neutral-900" />
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="max-w-xs pt-10">
-                            <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-[0.4em] leading-loose italic">
+                        <div className="max-w-xs pt-8 md:text-right">
+                            <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-[0.2em] leading-loose">
                                 Engineered for movement. The {product.name} integrates seamlessly into your {product.subcategory} rotation within our {product.category} catalog.
                             </p>
                         </div>
@@ -500,7 +539,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                 <Check className="w-8 h-8 text-green-500" />
                             </div>
 
-                            <h2 className="text-3xl font-black uppercase tracking-tighter italic mb-4">Added to Cart</h2>
+                            <h2 className="text-3xl font-semibold tracking-tighter mb-4">Added to Cart</h2>
                             <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-12">
                                 {quantity}x {product.name} — {selectedSize} / {selectedColor}
                             </p>
@@ -526,6 +565,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             </AnimatePresence>
 
             <Footer />
+
+            <SizeGuideDrawer
+                isOpen={showSizeGuide}
+                onClose={() => setShowSizeGuide(false)}
+            />
         </main>
     );
 }
