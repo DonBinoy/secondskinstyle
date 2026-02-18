@@ -42,7 +42,7 @@ export default function Editorial() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-none mb-10"
+                    className="text-6xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tighter leading-none mb-10"
                 >
                     Defy <br /> Limits
                 </motion.h2>
@@ -51,7 +51,7 @@ export default function Editorial() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="px-12 py-5 bg-white text-black font-black uppercase tracking-widest hover:bg-neutral-200 transition-all transform hover:scale-105"
+                    className="px-12 py-5 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-200 transition-all transform hover:scale-105"
                 >
                     Explore Now
                 </motion.button>

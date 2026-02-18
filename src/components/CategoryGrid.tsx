@@ -8,24 +8,17 @@ import { ArrowUpRight } from 'lucide-react';
 const CATEGORIES = [
     {
         id: 1,
-        name: 'Women',
-        image: '/image/women.png',
-        link: '/women',
-        description: 'Empower Your Movement'
-    },
-    {
-        id: 2,
         name: 'Men',
         image: '/image/man.png',
         link: '/men',
         description: 'Forged for Performance'
     },
     {
-        id: 3,
-        name: 'Accessories',
-        image: '/image/bag.png', // Keep external if no local image
-        link: '/accessories',
-        description: 'Essential Gear'
+        id: 2,
+        name: 'Women',
+        image: '/image/women.png',
+        link: '/women',
+        description: 'Empower Your Movement'
     },
 ];
 
@@ -33,7 +26,7 @@ export default function CategoryGrid() {
     return (
         <section className="w-full py-0 bg-white border-t border-black">
             <div className="py-12 px-6 md:px-12 border-b border-black flex flex-col items-center justify-center text-center">
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-black mb-2">
+                <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-black mb-2">
                     Shop By Category
                 </h2>
                 <div className="h-1 w-20 bg-black my-4" />
@@ -41,7 +34,7 @@ export default function CategoryGrid() {
                     Define Your Look
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 w-full min-h-[90vh]">
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full min-h-[90vh]">
                 {CATEGORIES.map((cat, index) => (
                     <Link href={cat.link} key={cat.id} className="relative group overflow-hidden block border-r border-black last:border-r-0 border-b md:border-b-0">
                         {/* Image Layer */}
@@ -67,7 +60,7 @@ export default function CategoryGrid() {
 
                             {/* Bottom Content */}
                             <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <h3 className="text-5xl md:text-7xl font-oswald font-bold text-white uppercase tracking-tighter mix-blend-difference mb-2">
+                                <h3 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter mix-blend-difference mb-2">
                                     {cat.name}
                                 </h3>
                                 <div className="h-0 overflow-hidden group-hover:h-auto transition-all duration-500">

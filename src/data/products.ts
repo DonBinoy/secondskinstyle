@@ -13,8 +13,9 @@ export const PRODUCTS = [
             "Athletic fit tailored for movement",
             "Reflective details for low-light visibility"
         ],
-        image: "/image/perfomancetee.png",
-        images: ["/image/perfomancetee.png", "/image/trainingtee.png"],
+        image: "/image/product/product1.jpg",
+        images: ["/image/product/product1.jpg", "/image/product/product2.jpg"],
+        video: "/video/product.mp4",
         sizes: ["S", "M", "L", "XL", "XXL"],
         colors: ["Neon Green", "Black", "Grey"],
         category: "Tops",

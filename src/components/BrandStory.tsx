@@ -50,11 +50,11 @@ export default function BrandStory() {
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none"
+                            className="text-5xl md:text-7xl font-semibold tracking-tighter leading-none"
                         >
                             Engineered <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-600">
-                                To Adapt.
+                                to Adapt.
                             </span>
                         </motion.h2>
                         <motion.div

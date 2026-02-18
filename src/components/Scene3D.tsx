@@ -91,7 +91,7 @@ export default function Scene3D() {
                     <span className="inline-block py-1 px-3 border border-white/20 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-white/60 mb-4 backdrop-blur-md">
                         The Innovation
                     </span>
-                    <h2 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
+                    <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
                         Liquid <br /> Motion
                     </h2>
                     <p className="max-w-md mx-auto text-sm md:text-base font-medium text-neutral-400 leading-relaxed tracking-wide mt-8">
@@ -103,11 +103,11 @@ export default function Scene3D() {
             {/* Bottom Brand Strip */}
             <div className="absolute bottom-12 left-0 w-full px-8 md:px-16 flex justify-between items-end z-10 opacity-50 relative pointer-events-none">
                 <div className="hidden md:block">
-                    <p className="text-xs font-mono text-white">FIG. 03 — FLUID DYNAMICS</p>
+                    <p className="text-xs text-white">FIG. 03 — FLUID DYNAMICS</p>
                 </div>
                 <div className="h-[1px] flex-1 bg-white/20 mx-8 hidden md:block" />
                 <div>
-                    <p className="text-xs font-mono text-white">SECONDSKIN™ TECH</p>
+                    <p className="text-xs text-white">SECONDSKIN™ TECH</p>
                 </div>
             </div>
 

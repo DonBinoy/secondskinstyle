@@ -26,8 +26,8 @@ export default function CartPage() {
                         <span className="text-black">Shopping Cart</span>
                     </nav>
                     <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 border-b border-neutral-100 pb-10">
-                        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-none italic">
-                            Your Cart
+                        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-none">
+                            Your Bag
                         </h1>
                         <span className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400">
                             {cartCount} {cartCount === 1 ? 'Item' : 'Items'} selected
@@ -48,7 +48,7 @@ export default function CartPage() {
                                     <div className="w-20 h-20 rounded-full bg-white shadow-sm flex items-center justify-center mb-6">
                                         <ShoppingBag className="w-6 h-6 text-neutral-300" />
                                     </div>
-                                    <h2 className="text-xl font-bold uppercase tracking-tight text-neutral-400 italic mb-8">Your cart is currently empty</h2>
+                                    <h2 className="text-xl font-semibold tracking-tight text-neutral-400 mb-8">Your bag is currently empty</h2>
                                     <Link href="/" className="group flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] bg-black text-white px-10 py-5 hover:bg-neutral-800 transition-all shadow-xl">
                                         Shop Collections <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
@@ -78,10 +78,10 @@ export default function CartPage() {
                                             <div className="flex-1 min-w-0 h-full flex flex-col justify-between">
                                                 <div>
                                                     <div className="flex justify-between items-start mb-6">
-                                                        <h3 className="text-3xl font-black uppercase tracking-tight leading-none italic group-hover:text-neutral-700 transition-colors">
+                                                        <h3 className="text-3xl font-semibold tracking-tight leading-none group-hover:text-neutral-700 transition-colors">
                                                             {item.name}
                                                         </h3>
-                                                        <p className="font-bold text-2xl font-mono tracking-tighter italic">
+                                                        <p className="font-bold text-2xl tracking-tighter">
                                                             {item.currency}{item.price.toFixed(2)}
                                                         </p>
                                                     </div>
@@ -100,7 +100,7 @@ export default function CartPage() {
                                                         >
                                                             <Minus className="w-4 h-4" />
                                                         </button>
-                                                        <span className="font-bold text-lg font-mono w-6 text-center">{item.quantity}</span>
+                                                        <span className="font-bold text-lg w-6 text-center">{item.quantity}</span>
                                                         <button
                                                             onClick={() => updateQuantity(item.id, item.size, item.color, item.quantity + 1)}
                                                             className="p-1 hover:text-neutral-400 transition-colors"
@@ -135,27 +135,27 @@ export default function CartPage() {
                                 {/* Subtle Background Accents */}
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
 
-                                <h2 className="text-2xl font-black uppercase tracking-tight mb-12 italic relative z-10 border-b border-white/10 pb-6">
+                                <h2 className="text-2xl font-semibold tracking-tight mb-12 relative z-10 border-b border-white/10 pb-6">
                                     Order Summary
                                 </h2>
 
                                 <div className="space-y-8 mb-16 relative z-10">
                                     <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.3em] opacity-40">
                                         <span>Merchandise Subtotal</span>
-                                        <span className="font-mono text-sm">€{cartTotal.toFixed(2)}</span>
+                                        <span className="text-sm">€{cartTotal.toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.3em] opacity-40">
                                         <span>Shipping & Handling</span>
-                                        <span className="font-mono text-sm text-[#ccff00]">Complimentary</span>
+                                        <span className="text-sm text-[#ccff00]">Complimentary</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.3em] opacity-40">
                                         <span>Estimated Sales Tax</span>
-                                        <span className="font-mono text-sm">€{(cartTotal * 0.2).toFixed(2)}</span>
+                                        <span className="text-sm">€{(cartTotal * 0.2).toFixed(2)}</span>
                                     </div>
 
                                     <div className="pt-10 border-t border-white/20 flex justify-between items-baseline">
-                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">Total Amount</span>
-                                        <span className="text-5xl font-black font-mono tracking-tighter italic">
+                                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-60">Total Amount</span>
+                                        <span className="text-5xl font-bold tracking-tighter">
                                             €{cartTotal.toFixed(2)}
                                         </span>
                                     </div>
@@ -163,7 +163,7 @@ export default function CartPage() {
 
                                 <button
                                     disabled={cart.length === 0}
-                                    className="w-full bg-white text-black h-20 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-[#ccff00] transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-10 disabled:grayscale disabled:cursor-not-allowed group relative z-10 shadow-xl"
+                                    className="w-full bg-white text-black h-20 font-bold uppercase tracking-[0.3em] text-[10px] hover:bg-[#ccff00] transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-10 disabled:grayscale disabled:cursor-not-allowed group relative z-10 shadow-xl"
                                 >
                                     Proceed to Checkout
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
@@ -184,7 +184,7 @@ export default function CartPage() {
 
                             {/* Promotional/Help section */}
                             <div className="mt-8 p-10 border border-neutral-100 flex flex-col gap-6 bg-neutral-50/30">
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] italic">Need Assistance?</h4>
+                                <h4 className="text-[10px] font-bold uppercase tracking-[0.4em]">Need Assistance?</h4>
                                 <p className="text-[10px] text-neutral-400 leading-loose font-bold uppercase tracking-widest">
                                     Our concierge team is available to help with your selection. <br />
                                     <Link href="#" className="text-black border-b border-black pb-0.5 mt-4 inline-block hover:opacity-50 transition-opacity">Contact Support</Link>
