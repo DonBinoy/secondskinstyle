@@ -104,7 +104,7 @@ export default function Testimonials() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl md:text-8xl font-semibold tracking-tighter text-black mb-4"
+                        className="text-5xl md:text-8xl font-bold tracking-tighter text-black mb-4"
                     >
                         Athlete <span className="text-neutral-400">Stories</span>
                     </motion.h2>

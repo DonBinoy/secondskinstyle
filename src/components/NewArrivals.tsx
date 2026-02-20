@@ -48,7 +48,7 @@ export default function NewArrivals() {
         <section className="w-full py-24 bg-white text-black overflow-hidden select-none">
             <div className="max-w-[1920px] mx-auto">
                 <div className="mb-12 px-8 md:px-16 flex justify-between items-end">
-                    <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
                         New Arrivals
                     </h2>
                     <Link href="/shop" className="text-sm font-bold uppercase tracking-widest text-neutral-400 hover:text-black transition-colors pb-1 border-b border-transparent hover:border-black">

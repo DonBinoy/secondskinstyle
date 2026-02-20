@@ -70,6 +70,7 @@ export default function MediaGrid() {
     const cursorRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     // Smooth cursor spring
     const springConfig = { damping: 20, stiffness: 300 };
@@ -77,49 +78,60 @@ export default function MediaGrid() {
     const cursorY = useSpring(mouseY, springConfig);
 
     useEffect(() => {
+        const checkDevice = () => {
+            setIsDesktop(window.innerWidth > 1024);
+        };
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+
         const moveCursor = (e: globalThis.MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
         };
         window.addEventListener('mousemove', moveCursor);
-        return () => window.removeEventListener('mousemove', moveCursor);
+        return () => {
+            window.removeEventListener('resize', checkDevice);
+            window.removeEventListener('mousemove', moveCursor);
+        };
     }, [mouseX, mouseY]);
 
     return (
-        <section className="w-full py-24 bg-white text-black overflow-hidden relative cursor-none">
-            {/* Fluid Cursor - Only visible when hovering the section (technically usually handled globally but good here) */}
-            <motion.div
-                ref={cursorRef}
-                className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] mix-blend-difference"
-                style={{
-                    x: cursorX,
-                    y: cursorY,
-                    translateX: '-50%',
-                    translateY: '-50%'
-                }}
-            >
-                <AnimatePresence mode='wait'>
-                    {hoveredIndex !== null ? (
-                        <motion.div
-                            key="active"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 3, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            className="w-full h-full bg-white rounded-full flex items-center justify-center"
-                        >
-                            {/* Tiny label inside cursor? Or simple dot */}
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="idle"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            className="w-full h-full bg-white rounded-full"
-                        />
-                    )}
-                </AnimatePresence>
-            </motion.div>
+        <section className={cn("w-full py-24 bg-white text-black overflow-hidden relative", isDesktop && "cursor-none")}>
+            {/* Fluid Cursor - Only visible on desktop */}
+            {isDesktop && (
+                <motion.div
+                    ref={cursorRef}
+                    className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] mix-blend-difference"
+                    style={{
+                        x: cursorX,
+                        y: cursorY,
+                        translateX: '-50%',
+                        translateY: '-50%'
+                    }}
+                >
+                    <AnimatePresence mode='wait'>
+                        {hoveredIndex !== null ? (
+                            <motion.div
+                                key="active"
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 3, opacity: 1 }}
+                                exit={{ scale: 0, opacity: 0 }}
+                                className="w-full h-full bg-white rounded-full flex items-center justify-center"
+                            >
+                                {/* Tiny label inside cursor? Or simple dot */}
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="idle"
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0, opacity: 0 }}
+                                className="w-full h-full bg-white rounded-full"
+                            />
+                        )}
+                    </AnimatePresence>
+                </motion.div>
+            )}
 
             {/* Background noise */}
             <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
@@ -132,7 +144,7 @@ export default function MediaGrid() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-6xl md:text-9xl font-semibold tracking-tighter text-black"
+                        className="text-6xl md:text-9xl font-bold tracking-tighter text-black"
                     >
                         Journal
                     </motion.h2>
