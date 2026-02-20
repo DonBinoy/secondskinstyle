@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jost.variable} ${geistMono.variable} antialiased bg-white text-black cursor-none font-sans`}
+        className={`${jost.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
       >
         <CartProvider>
           <SmoothScroll>

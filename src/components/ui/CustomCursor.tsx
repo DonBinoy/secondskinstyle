@@ -14,8 +14,22 @@ export default function CustomCursor() {
 
     const [isHovering, setIsHovering] = useState(false);
     const [isClicking, setIsClicking] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
+        const checkDevice = () => {
+            const desktop = window.innerWidth > 1024;
+            setIsDesktop(desktop);
+            if (desktop) {
+                document.body.style.cursor = 'none';
+            } else {
+                document.body.style.cursor = 'auto';
+            }
+        };
+
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX - 16);
             cursorY.set(e.clientY - 16);
@@ -42,12 +56,16 @@ export default function CustomCursor() {
         window.addEventListener('mouseover', handleMouseOver);
 
         return () => {
+            window.removeEventListener('resize', checkDevice);
             window.removeEventListener('mousemove', moveCursor);
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
             window.removeEventListener('mouseover', handleMouseOver);
+            document.body.style.cursor = 'auto';
         };
     }, [cursorX, cursorY]);
+
+    if (!isDesktop) return null;
 
     return (
         <motion.div
