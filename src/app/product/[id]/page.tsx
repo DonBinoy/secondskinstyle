@@ -99,10 +99,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         <main className="min-h-screen bg-white">
             <Navbar solid />
 
-            <div className="max-w-[1920px] mx-auto px-4 md:px-10 pt-32 pb-20">
+            <div className="max-w-[1920px] mx-auto px-4 md:px-10 pt-20 pb-10 md:pt-32 md:pb-20">
 
                 {/* Top Breadcrumbs */}
-                <nav className="flex items-center text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-12 overflow-hidden whitespace-nowrap">
+                <nav className="flex items-center text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6 md:mb-12 overflow-hidden whitespace-nowrap">
                     <Link href="/" className="hover:text-black transition-colors">Home</Link>
                     <ChevronRight className="w-3 h-3 mx-2 opacity-30" />
                     <Link href="#" className="hover:text-black transition-colors">{product.category}</Link>
@@ -115,7 +115,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     {/* Left: Image Gallery (Swapped) */}
                     <div className="w-full lg:w-3/5 flex flex-col gap-20">
                         {/* 1. Main Image */}
-                        <div className="relative w-full aspect-[3/4] bg-neutral-100 overflow-hidden group">
+                        <div className="relative w-[95%] lg:w-[85%] mx-auto aspect-square bg-neutral-100 overflow-hidden group">
                             <Image
                                 src={product.image}
                                 alt={product.name}
@@ -125,19 +125,109 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             />
                         </div>
 
+                        {/* Product Details - Mobile Only */}
+                        <div className="lg:hidden flex flex-col gap-6 px-4 py-4">
+                            <div className="border-b border-neutral-100 pb-6">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <div className="flex text-black">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} className="w-3 h-3 fill-black" />
+                                        ))}
+                                    </div>
+                                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">128 Reviews</span>
+                                </div>
+                                <h1 className="text-3xl font-medium text-black mb-3 leading-tight tracking-tight">
+                                    {product.name}
+                                </h1>
+                                <p className="text-2xl font-medium text-neutral-900 tracking-tight">
+                                    {product.price.toFixed(2)} {product.currency}
+                                </p>
+                            </div>
+
+                            {/* Size Selector Mobile */}
+                            {product.sizes && (
+                                <div>
+                                    <div className="flex justify-between items-center mb-4">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Size</span>
+                                        <button
+                                            onClick={() => setShowSizeGuide(true)}
+                                            className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 underline"
+                                        >
+                                            Size Guide
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-5 gap-2">
+                                        {product.sizes.map((size) => (
+                                            <button
+                                                key={`mobile-${size}`}
+                                                onClick={() => { setSelectedSize(size); document.getElementById('size-error-mobile')?.classList.add('hidden'); }}
+                                                className={cn(
+                                                    "h-12 border flex items-center justify-center text-[10px] font-bold transition-all duration-300",
+                                                    selectedSize === size
+                                                        ? "border-black bg-black text-white"
+                                                        : "border-neutral-100 text-black"
+                                                )}
+                                            >
+                                                {size}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <p className="text-red-500 text-[9px] mt-3 font-bold uppercase tracking-widest hidden" id="size-error-mobile">Please select a size</p>
+                                </div>
+                            )}
+
+                            <div className="flex flex-col gap-4">
+                                <div className="flex gap-4">
+                                    <div className="flex items-center border border-neutral-100 bg-white px-4 h-16 w-32 justify-between">
+                                        <button onClick={() => handleQuantity('dec')} className="p-2 hover:opacity-50 transition-opacity">
+                                            <Minus className="w-4 h-4" />
+                                        </button>
+                                        <span className="font-bold text-lg">{quantity}</span>
+                                        <button onClick={() => handleQuantity('inc')} className="p-2 hover:opacity-50 transition-opacity">
+                                            <Plus className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            if (!selectedSize) {
+                                                document.getElementById('size-error-mobile')?.classList.remove('hidden');
+                                                return;
+                                            }
+                                            handleAddToCart();
+                                        }}
+                                        className="flex-1 h-16 bg-black text-white font-bold uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 hover:bg-neutral-800 transition-all active:scale-[0.98]"
+                                    >
+                                        Add to Bag
+                                    </button>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        if (!selectedSize) {
+                                            document.getElementById('size-error-mobile')?.classList.remove('hidden');
+                                            return;
+                                        }
+                                        handleBuyNow();
+                                    }}
+                                    className="w-full bg-neutral-100 hover:bg-neutral-200 text-black h-16 font-bold uppercase tracking-widest text-[11px] transition-all active:scale-[0.98]"
+                                >
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+
                         {/* 2. Description (Moved from Right) */}
                         <div className="flex flex-col gap-6 px-4 md:px-0 max-w-2xl">
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">Design Note</h3>
+                            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Design Note</h3>
                             <p className="text-neutral-900 leading-relaxed font-light text-xl md:text-2xl">
                                 "{product.description}"
                             </p>
                         </div>
 
                         {/* 3. Original Gallery Row */}
-                        <div className="flex flex-col lg:flex-row gap-2 h-[80vh] min-h-[500px] overflow-hidden">
+                        <div className="flex flex-col lg:flex-row gap-2 h-auto lg:h-[80vh] min-h-[400px] lg:min-h-[500px] overflow-hidden">
                             {/* Video Column */}
                             {product.video && (
-                                <div className="relative flex-1 bg-neutral-100 h-full">
+                                <div className="relative flex-1 bg-neutral-100 aspect-[3/4] lg:aspect-auto lg:h-full">
                                     <video
                                         src={product.video}
                                         autoPlay
@@ -150,7 +240,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             )}
 
                             {/* Image 1 Column (Front) */}
-                            <div className="relative flex-1 bg-neutral-50 h-full group">
+                            <div className="relative flex-1 bg-neutral-50 aspect-[3/4] lg:aspect-auto lg:h-full group">
                                 <Image
                                     src={product.images?.[0] || product.image}
                                     alt={`${product.name} Front View`}
@@ -160,7 +250,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             </div>
 
                             {/* Image 2 Column (Back) */}
-                            <div className="relative flex-1 bg-neutral-50 h-full group">
+                            <div className="relative flex-1 bg-neutral-50 aspect-[3/4] lg:aspect-auto lg:h-full group">
                                 <Image
                                     src={product.images?.[1] || product.image}
                                     alt={`${product.name} Back View`}
@@ -172,26 +262,26 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     </div>
 
                     {/* Right: Product Details (Swapped) */}
-                    <div className="w-full lg:w-2/5 lg:pr-10 xl:pr-20">
-                        <div className="sticky top-32 flex flex-col gap-12">
+                    <div className="hidden lg:block w-full lg:w-2/5 lg:pr-10 xl:pr-20">
+                        <div className="sticky top-32 flex flex-col gap-8">
 
                             {/* Header */}
-                            <div className="border-b border-neutral-100 pb-8">
-                                <Link href="#reviews" className="flex items-center gap-2 mb-4 group w-fit">
+                            <div className="border-b border-neutral-100 pb-6">
+                                <Link href="#reviews" className="flex items-center gap-2 mb-3 group w-fit">
                                     <div className="flex text-black">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className="w-3.5 h-3.5 fill-black" />
                                         ))}
                                     </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 group-hover:text-black transition-colors">128 Reviews</span>
+                                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-black transition-colors">128 Reviews</span>
                                 </Link>
-                                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black mb-4 leading-tight">
+                                <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-black mb-3 leading-tight tracking-tight">
                                     {product.name}
                                 </h1>
-                                <p className="text-xl md:text-2xl font-bold text-black opacity-80">
+                                <p className="text-2xl font-medium text-neutral-900 tracking-tight">
                                     {product.price.toFixed(2)} {product.currency}
                                 </p>
-                                <p className="text-[10px] text-neutral-400 mt-2 font-medium">Taxes and duties included</p>
+                                <p className="text-[10px] text-neutral-500 mt-1 font-medium">Taxes and duties included</p>
                             </div>
 
 
@@ -199,8 +289,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             {/* Size Selector */}
                             {product.sizes && (
                                 <div>
-                                    <div className="flex justify-between items-center mb-6">
-                                        <span className="text-sm font-bold text-black">Size</span>
+                                    <div className="flex justify-between items-center mb-4">
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Size</span>
                                         <button
                                             onClick={() => setShowSizeGuide(true)}
                                             className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black underline transition-colors"
@@ -229,9 +319,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             )}
 
                             {/* Actions */}
-                            <div className="flex flex-col gap-4 mt-6">
+                            <div className="flex flex-col gap-4 mt-4">
                                 <div className="flex gap-4">
-                                    <div className="flex items-center border border-neutral-100 px-6 h-16 w-32 justify-between">
+                                    <div className="flex items-center border border-neutral-100 bg-white px-6 h-16 w-32 justify-between shadow-sm">
                                         <button onClick={() => handleQuantity('dec')} className="p-2 hover:opacity-50 transition-opacity">
                                             <Minus className="w-4 h-4" />
                                         </button>
@@ -243,14 +333,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                                     <button
                                         onClick={handleAddToCart}
-                                        className="flex-1 h-16 bg-black text-white font-bold uppercase tracking-[0.1em] text-xs hover:bg-neutral-800 transition-all duration-300 flex items-center justify-center gap-3"
+                                        className="flex-1 h-16 bg-black text-white font-bold uppercase tracking-[0.1em] text-xs hover:bg-neutral-800 transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98]"
                                     >
                                         Add to Bag
                                     </button>
                                 </div>
                                 <button
                                     onClick={handleBuyNow}
-                                    className="w-full border border-black text-black h-16 font-bold uppercase tracking-[0.1em] text-xs hover:bg-black hover:text-white transition-all duration-500"
+                                    className="w-full bg-neutral-100 hover:bg-neutral-200 text-black h-16 font-bold uppercase tracking-[0.1em] text-xs transition-all duration-300 active:scale-[0.98]"
                                 >
                                     Buy Now
                                 </button>
@@ -260,7 +350,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             {product.details && (
                                 <div className="border-t border-neutral-100 mt-10">
                                     <details className="group py-6 cursor-pointer" open>
-                                        <summary className="flex items-center justify-between font-bold uppercase tracking-[0.3em] text-[10px] list-none select-none">
+                                        <summary className="flex items-center justify-between font-semibold uppercase tracking-[0.2em] text-[10px] list-none select-none">
                                             Product Details
                                             <Plus className="w-3 h-3 group-open:hidden" />
                                             <Minus className="w-3 h-3 hidden group-open:block" />
@@ -270,7 +360,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                             animate={{ height: "auto", opacity: 1 }}
                                             className="overflow-hidden"
                                         >
-                                            <ul className="mt-8 space-y-4 text-neutral-500 text-sm font-light pl-6">
+                                            <ul className="mt-8 space-y-4 text-neutral-600 text-sm font-light pl-6">
                                                 {product.details.map((detail, i) => (
                                                     <li key={i} className="flex items-center gap-4">
                                                         <span className="w-1 h-1 bg-neutral-300 rounded-full" />
@@ -309,14 +399,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-center text-center gap-2">
-                                    <h4 className="font-black text-sm uppercase tracking-tight group-hover:text-neutral-600 transition-colors">
+                                <div className="flex flex-col items-center text-center gap-1">
+                                    <h4 className="font-medium text-sm uppercase tracking-tight group-hover:text-neutral-600 transition-colors">
                                         {rec.name}
                                     </h4>
-                                    <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest italic">
+                                    <p className="text-neutral-400 text-[9px] font-medium uppercase tracking-[0.2em]">
                                         {rec.subcategory}
                                     </p>
-                                    <p className="font-bold text-lg font-mono tracking-tighter">{rec.currency}{rec.price.toFixed(2)}</p>
+                                    <p className="font-medium text-sm tracking-tight text-neutral-900">{rec.currency}{rec.price.toFixed(2)}</p>
                                 </div>
                             </Link>
                         ))}

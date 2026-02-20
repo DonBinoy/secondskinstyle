@@ -20,6 +20,7 @@ export const PRODUCTS = [
         colors: ["Neon Green", "Black", "Grey"],
         category: "Tops",
         subcategory: "Performance",
+        gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -42,6 +43,7 @@ export const PRODUCTS = [
         colors: ["Lavender", "Black", "White"],
         category: "Tops",
         subcategory: "Seamless",
+        gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -63,6 +65,7 @@ export const PRODUCTS = [
         colors: ["White", "Black", "Pink"],
         category: "Bottoms",
         subcategory: "Skirts",
+        gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -84,6 +87,7 @@ export const PRODUCTS = [
         colors: ["Black", "Graphite", "Midnight Blue"],
         category: "Bottoms",
         subcategory: "Shorts",
+        gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -106,6 +110,7 @@ export const PRODUCTS = [
         colors: ["Mint", "White", "Black"],
         category: "Tops",
         subcategory: "Seamless",
+        gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -128,6 +133,7 @@ export const PRODUCTS = [
         colors: ["Grey", "Black"],
         category: "Bottoms",
         subcategory: "Seamless",
+        gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -151,6 +157,7 @@ export const PRODUCTS = [
         colors: ["Blue", "Black", "White"],
         category: "Tops",
         subcategory: "Performance",
+        gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -173,6 +180,7 @@ export const PRODUCTS = [
         colors: ["Red", "Black", "Navy"],
         category: "Tops",
         subcategory: "Training",
+        gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     }
 ];
