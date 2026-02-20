@@ -174,7 +174,7 @@ export default function Testimonials() {
                     </div>
 
                     {/* TEXT CONTENT - Below Image, Smaller & Elegant */}
-                    <div className="relative min-h-[120px] mb-8 text-center px-4 md:px-20">
+                    <div className="relative min-h-[180px] md:min-h-[120px] mb-8 text-center px-4 md:px-20 mt-8 md:mt-0">
                         <AnimatePresence initial={false} custom={direction} mode="popLayout">
                             <motion.div
                                 key={currentIndex}
@@ -188,9 +188,9 @@ export default function Testimonials() {
                                 animate="center"
                                 exit="exit"
                                 transition={{ duration: 0.4 }}
-                                className="absolute inset-0 flex items-center justify-center"
+                                className="relative md:absolute md:inset-0 flex items-center justify-center p-4 md:p-0"
                             >
-                                <p className="text-xl md:text-2xl font-normal leading-relaxed text-neutral-800">
+                                <p className="text-lg md:text-2xl font-normal leading-relaxed text-neutral-800 italic">
                                     "{activeReview.review}"
                                 </p>
                             </motion.div>
