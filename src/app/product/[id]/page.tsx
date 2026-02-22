@@ -16,6 +16,7 @@ import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/context/LanguageContext';
 
 const getColorClass = (color: string) => {
     const map: Record<string, string> = {
@@ -38,6 +39,7 @@ const getColorClass = (color: string) => {
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
+    const { t } = useLanguage();
     const product = PRODUCTS.find(p => p.id === id);
     if (!product) {
         return <div className="min-h-screen flex items-center justify-center">Product not found</div>;
@@ -146,8 +148,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             {product.sizes && (
                                 <div>
                                     <div className="flex justify-between items-center mb-4">
-                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Size</span>
-                                        <button onClick={() => setShowSizeGuide(true)} className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 underline">Size Guide</button>
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">{t('product.size')}</span>
+                                        <button onClick={() => setShowSizeGuide(true)} className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 underline">{t('product.sizeGuide')}</button>
                                     </div>
                                     <div className="grid grid-cols-5 gap-2">
                                         {product.sizes.map((size) => (
@@ -160,7 +162,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                             </button>
                                         ))}
                                     </div>
-                                    <p className="text-red-500 text-[9px] mt-3 font-bold uppercase tracking-widest hidden" id="size-error-mobile">Please select a size</p>
+                                    <p className="text-red-500 text-[9px] mt-3 font-bold uppercase tracking-widest hidden" id="size-error-mobile">{t('product.selectSizeError')}</p>
                                 </div>
                             )}
 
@@ -175,7 +177,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                         onClick={() => { if (!selectedSize) { document.getElementById('size-error-mobile')?.classList.remove('hidden'); return; } handleAddToCart(); }}
                                         className="flex-1 h-16 bg-black text-white font-bold uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 hover:bg-neutral-800 transition-all active:scale-[0.98]"
                                     >
-                                        Add to Bag
+                                        {t('product.addToCart')}
                                     </button>
                                 </div>
                                 <button
@@ -189,7 +191,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                         {/* 2. Description */}
                         <div className="flex flex-col gap-6 px-4 md:px-0 max-w-2xl">
-                            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Design Note</h3>
+                            <h3 className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">{t('product.designNote')}</h3>
                             <p className="text-neutral-900 leading-relaxed font-light text-xl md:text-2xl">
                                 "{product.description}"
                             </p>
@@ -219,19 +221,19 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                     <div className="flex text-black">
                                         {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-black" />)}
                                     </div>
-                                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-black transition-colors">128 Reviews</span>
+                                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-black transition-colors">{t('product.reviewsCount')}</span>
                                 </Link>
                                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-black mb-3 leading-tight tracking-tight">{product.name}</h1>
                                 <p className="text-2xl font-medium text-neutral-900 tracking-tight">{product.price.toFixed(2)} {product.currency}</p>
-                                <p className="text-[10px] text-neutral-500 mt-1 font-medium">Taxes and duties included</p>
+                                <p className="text-[10px] text-neutral-500 mt-1 font-medium">{t('product.taxesIncluded')}</p>
                             </div>
 
                             {/* Size Selector */}
                             {product.sizes && (
                                 <div>
                                     <div className="flex justify-between items-center mb-4">
-                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">Size</span>
-                                        <button onClick={() => setShowSizeGuide(true)} className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black underline transition-colors">Size Guide</button>
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">{t('product.size')}</span>
+                                        <button onClick={() => setShowSizeGuide(true)} className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black underline transition-colors">{t('product.sizeGuide')}</button>
                                     </div>
                                     <div className="grid grid-cols-5 gap-2">
                                         {product.sizes.map((size) => (
@@ -244,7 +246,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                             </button>
                                         ))}
                                     </div>
-                                    <p className="text-red-500 text-[10px] mt-4 font-bold uppercase tracking-widest hidden" id="size-error">Please select a size</p>
+                                    <p className="text-red-500 text-[10px] mt-4 font-bold uppercase tracking-widest hidden" id="size-error">{t('product.selectSizeError')}</p>
                                 </div>
                             )}
 
@@ -350,8 +352,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         <div className="flex items-center gap-6">
                             <span className="font-black text-6xl font-mono tracking-tighter italic">4.9</span>
                             <div className="text-left">
-                                <div className="text-[10px] font-black uppercase tracking-[0.3em]">Verified Score</div>
-                                <div className="text-neutral-400 text-[10px] uppercase font-bold tracking-widest mt-1">Based on 128 community reviews</div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.3em]">{t('product.verifiedScore')}</div>
+                                <div className="text-neutral-400 text-[10px] uppercase font-bold tracking-widest mt-1">{t('product.basedOnReviews')}</div>
                             </div>
                         </div>
                     </div>
@@ -445,7 +447,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                 <div className="mt-24 text-center">
                     <button className="bg-black text-white px-16 py-7 font-semibold tracking-[0.3em] text-[10px] hover:bg-neutral-800 transition-all duration-500 shadow-2xl">
-                        Show All Reviews
+                        {t('product.showAllReviews')}
                     </button>
                 </div>
             </section>
@@ -454,10 +456,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             <section className="mt-20 border-t border-neutral-100 pt-16 pb-20">
                 <div className="max-w-[1920px] mx-auto px-4 md:px-10 flex flex-col md:flex-row justify-between items-start gap-10">
                     <div className="flex-1 w-full">
-                        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">Explore Ecosystem</h2>
+                        <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">{t('product.exploreEcosystem')}</h2>
                         <div className="flex flex-col gap-10 md:flex-row w-full md:gap-32">
                             <div className="flex flex-col gap-4">
-                                <span className="text-xs font-medium text-neutral-400">Categories</span>
+                                <span className="text-xs font-medium text-neutral-400">{t('product.categories')}</span>
                                 <div className="flex flex-col gap-2">
                                     {['Men', 'Women'].map((cat) => (
                                         <Link key={cat} href="#" className="group flex items-center gap-3">
@@ -468,7 +470,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4">
-                                <span className="text-xs font-medium text-neutral-400">Sub Categories</span>
+                                <span className="text-xs font-medium text-neutral-400">{t('product.subCategories')}</span>
                                 <div className="flex flex-col gap-2">
                                     {['Tanktop', 'Roundneck', 'Shorts'].map((sub) => (
                                         <Link key={sub} href="#" className="group flex items-center gap-3">
@@ -516,7 +518,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                 <Check className="w-8 h-8 text-green-500" />
                             </div>
 
-                            <h2 className="text-3xl font-semibold tracking-tighter mb-4">Added to Cart</h2>
+                            <h2 className="text-3xl font-semibold tracking-tighter mb-4">{t('product.addedToCart')}</h2>
                             <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-12">
                                 {quantity}x {product.name} — {selectedSize} / {selectedColor}
                             </p>
@@ -526,14 +528,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                     onClick={() => router.push('/cart')}
                                     className="w-full bg-black text-white h-16 font-black uppercase tracking-[0.2em] text-[10px] hover:bg-neutral-800 transition-all duration-300 flex items-center justify-center gap-3"
                                 >
-                                    Proceed to Cart
+                                    {t('product.proceedToCart')}
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                                 <button
                                     onClick={() => setShowPopup(false)}
                                     className="w-full border border-neutral-100 text-neutral-400 h-16 font-black uppercase tracking-[0.2em] text-[10px] hover:bg-neutral-50 hover:text-black transition-all duration-300"
                                 >
-                                    Continue Shopping
+                                    {t('product.continueShopping')}
                                 </button>
                             </div>
                         </motion.div>
@@ -552,6 +554,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 }
 
 function ReviewCard({ review }: { review: any }) {
+    const { t } = useLanguage();
     return (
         <div className="bg-white border border-neutral-100 p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col gap-4 h-full">
             <div className="flex items-center justify-between">
@@ -571,7 +574,7 @@ function ReviewCard({ review }: { review: any }) {
                 <div className="flex flex-col">
                     <span className="font-bold text-xs text-black">{review.name}</span>
                     <span className="text-[9px] text-green-600 font-semibold uppercase tracking-wide flex items-center gap-1">
-                        <ShieldCheck className="w-3 h-3" /> Verified
+                        <ShieldCheck className="w-3 h-3" /> {t('product.verified')}
                     </span>
                 </div>
             </div>
@@ -580,6 +583,7 @@ function ReviewCard({ review }: { review: any }) {
 }
 
 function MobileReviewSlider({ reviews }: { reviews: any[] }) {
+    const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => { // Changed useState to useEffect for side effects

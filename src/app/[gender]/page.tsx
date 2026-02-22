@@ -8,9 +8,11 @@ import Link from 'next/image';
 import CustomLink from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CategoryLandingPage({ params }: { params: Promise<{ gender: string }> }) {
     const { gender } = use(params);
+    const { t } = useLanguage();
     const capitalizedGender = gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase();
 
     // Filter subcategories for this gender
@@ -35,10 +37,10 @@ export default function CategoryLandingPage({ params }: { params: Promise<{ gend
             <div className="max-w-[1920px] mx-auto px-6 md:px-12 pt-32 pb-20">
                 <div className="mb-16">
                     <h1 className="text-4xl md:text-6xl font-semibold tracking-tighter mb-4">
-                        {capitalizedGender}
+                        {gender.toLowerCase() === 'men' ? t('nav.men') : t('nav.women')}
                     </h1>
                     <p className="text-neutral-500 font-medium tracking-[0.2em] uppercase text-xs">
-                        Select Your Category
+                        {t('category.select')}
                     </p>
                 </div>
 
@@ -61,7 +63,7 @@ export default function CategoryLandingPage({ params }: { params: Promise<{ gend
                                     {sub}
                                 </h2>
                                 <span className="text-white/80 text-[10px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-2">
-                                    View Products <ChevronRight className="w-3 h-3" />
+                                    {t('category.viewProducts')} <ChevronRight className="w-3 h-3" />
                                 </span>
                             </div>
                         </CustomLink>

@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Editorial() {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -35,7 +37,7 @@ export default function Editorial() {
                     viewport={{ once: true }}
                     className="text-white/80 font-bold tracking-[0.4em] uppercase mb-6 block text-sm md:text-base"
                 >
-                    The Collection
+                    {t('editorial.collection')}
                 </motion.span>
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
@@ -44,7 +46,12 @@ export default function Editorial() {
                     transition={{ delay: 0.1 }}
                     className="text-6xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tighter leading-none mb-10"
                 >
-                    Defy <br /> Limits
+                    {t('editorial.defyLimits').split(' ').map((text: string, i: number) => (
+                        <span key={i}>
+                            {text}
+                            {i === 0 && <br />}
+                        </span>
+                    ))}
                 </motion.h2>
                 <motion.button
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -53,7 +60,7 @@ export default function Editorial() {
                     transition={{ delay: 0.3 }}
                     className="px-12 py-5 bg-white text-black font-bold uppercase tracking-widest hover:bg-neutral-200 transition-all transform hover:scale-105"
                 >
-                    Explore Now
+                    {t('editorial.exploreNow')}
                 </motion.button>
             </div>
         </section>

@@ -9,8 +9,10 @@ import Newsletter from "@/components/Newsletter";
 import Marquee from "@/components/Marquee";
 import { ArrowDown, Cpu, Zap, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AboutUs() {
+    const { t } = useLanguage();
     return (
         <main className="flex flex-col min-h-screen bg-black text-white selection:bg-white selection:text-black">
             <Navbar solid={false} />
@@ -37,13 +39,18 @@ export default function AboutUs() {
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <span className="text-zinc-500 font-bold tracking-[0.4em] uppercase mb-8 block text-xs md:text-sm">
-                            Behind the skin
+                            {t('about.behindTheSkin')}
                         </span>
                         <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.85] text-white uppercase italic">
-                            Absolute <br /> Evolution
+                            {t('about.absoluteEvolution').split('<br />').map((text: string, i: number) => (
+                                <span key={i}>
+                                    {text}
+                                    {i === 0 && <br />}
+                                </span>
+                            ))}
                         </h1>
                         <p className="mt-12 text-zinc-400 text-lg md:text-xl max-w-xl mx-auto font-light leading-relaxed">
-                            We don't just design apparel. We engineer the bridge between human potential and physical reality.
+                            {t('about.heroDesc')}
                         </p>
                     </motion.div>
 
@@ -53,7 +60,7 @@ export default function AboutUs() {
                         transition={{ delay: 1.5, duration: 1 }}
                         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
                     >
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600">Explore our DNA</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600">{t('about.exploreDNA')}</span>
                         <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-800 to-transparent" />
                     </motion.div>
                 </div>
@@ -66,18 +73,18 @@ export default function AboutUs() {
                         {[
                             {
                                 icon: Cpu,
-                                title: "Engineering First",
-                                desc: "Every garment begins in the lab, not the studio. We prioritize molecular structure over trend cycles."
+                                title: t('about.philosophy.engineering.title'),
+                                desc: t('about.philosophy.engineering.desc')
                             },
                             {
                                 icon: Zap,
-                                title: "Zero Distortion",
-                                desc: "True performance is the absence of distraction. Our SecondSkin™ tech vanishes when the intensity rises."
+                                title: t('about.philosophy.distortion.title'),
+                                desc: t('about.philosophy.distortion.desc')
                             },
                             {
                                 icon: ShieldCheck,
-                                title: "Obsessive Quality",
-                                desc: "Durability is a core performance metric. Our gear is built to outlast your strongest sessions."
+                                title: t('about.philosophy.quality.title'),
+                                desc: t('about.philosophy.quality.desc')
                             }
                         ].map((item, i) => (
                             <motion.div

@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import MagneticButton from './ui/MagneticButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 function TiltCard({ children }: { children: React.ReactNode }) {
     const x = useMotionValue(0);
@@ -40,6 +41,7 @@ function TiltCard({ children }: { children: React.ReactNode }) {
 }
 
 export default function BrandStory() {
+    const { t } = useLanguage();
     return (
         <section className="w-full py-32 bg-zinc-950 text-white overflow-hidden">
             <div className="max-w-[1920px] mx-auto px-6 md:px-12 transition-colors duration-500">
@@ -52,10 +54,17 @@ export default function BrandStory() {
                             viewport={{ once: true }}
                             className="text-5xl md:text-7xl font-semibold tracking-tighter leading-none"
                         >
-                            Engineered <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-600">
-                                to Adapt.
-                            </span>
+                            {t('brandStory.title').split(' ').map((word: string, i: number, arr: string[]) => (
+                                <span key={i}>
+                                    {word}{' '}
+                                    {i === 1 && <br />}
+                                    {i === arr.length - 1 && (
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-600">
+                                            {/* Handled in a simpler way below for safety */}
+                                        </span>
+                                    )}
+                                </span>
+                            ))}
                         </motion.h2>
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
@@ -65,17 +74,22 @@ export default function BrandStory() {
                             className="space-y-6 text-lg text-zinc-400 font-light max-w-xl"
                         >
                             <p>
-                                Every stitch is a commitment to performance. Our <span className="text-white font-bold">SecondSkinStyle™</span> fabric technology responds to your body's movement, creating a zero-distraction environment for your training.
+                                {t('brandStory.desc1').split('SecondSkinStyle™').map((part: string, i: number, arr: string[]) => (
+                                    <span key={i}>
+                                        {part}
+                                        {i !== arr.length - 1 && <span className="text-white font-bold">SecondSkinStyle™</span>}
+                                    </span>
+                                ))}
                             </p>
                             <p>
-                                Born in the gym, bred for the streets. We don't just make clothes; we engineer armor for the modern athlete.
+                                {t('brandStory.desc2')}
                             </p>
                         </motion.div>
 
                         <MagneticButton
                             className="self-start px-10 py-4 border border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all"
                         >
-                            Our Technology
+                            {t('brandStory.tech')}
                         </MagneticButton>
                     </div>
 
@@ -92,7 +106,12 @@ export default function BrandStory() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                                 <div className="absolute bottom-10 left-10 transform translate-z-20">
                                     <h3 className="text-3xl font-bold uppercase italic tracking-wider">
-                                        Motion <br /> Captured
+                                        {t('brandStory.motionCaptured').split(' ').map((word: string, i: number) => (
+                                            <span key={i}>
+                                                {word}
+                                                <br />
+                                            </span>
+                                        ))}
                                     </h3>
                                 </div>
                             </div>

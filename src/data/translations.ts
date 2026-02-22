@@ -31,7 +31,24 @@ export const translations = {
             reviews: 'Reviews',
             productReviews: 'Product Reviews',
             engineeredPeak: 'Every detail has been engineered for peak performance. Advanced moisture-wicking technology combines with premium fabrics.',
-            designedAthletes: 'Designed with athletes, tested by professionals, crafted for everyone who demands more from their gear.'
+            designedAthletes: 'Designed with athletes, tested by professionals, crafted for everyone who demands more from their gear.',
+            verifiedScore: 'Verified Score',
+            basedOnReviews: 'Based on 128 community reviews',
+            showAllReviews: 'Show All Reviews',
+            exploreEcosystem: 'Explore Ecosystem',
+            categories: 'Categories',
+            subCategories: 'Sub Categories',
+            addedToCart: 'Added to Cart',
+            proceedToCart: 'Proceed to Cart',
+            continueShopping: 'Continue Shopping',
+            verified: 'Verified',
+            buyNow: 'Buy Now',
+            size: 'Size',
+            sizeGuide: 'Size Guide',
+            selectSizeError: 'Please select a size',
+            taxesIncluded: 'Taxes and duties included',
+            designNote: 'Design Note',
+            reviewsCount: '128 Reviews'
         },
         features: {
             title: 'Features',
@@ -82,6 +99,46 @@ export const translations = {
                 sustainability: 'Sustainability',
                 sustainabilityValue: 'Bluesign® Approved Fabric'
             }
+        },
+        about: {
+            behindTheSkin: 'Behind the skin',
+            absoluteEvolution: 'Absolute Evolution',
+            heroDesc: "We don't just design apparel. We engineer the bridge between human potential and physical reality.",
+            exploreDNA: 'Explore our DNA',
+            philosophy: {
+                engineering: {
+                    title: 'Engineering First',
+                    desc: 'Every garment begins in the lab, not the studio. We prioritize molecular structure over trend cycles.'
+                },
+                distortion: {
+                    title: 'Zero Distortion',
+                    desc: 'True performance is the absence of distraction. Our SecondSkin™ tech vanishes when the intensity rises.'
+                },
+                quality: {
+                    title: 'Obsessive Quality',
+                    desc: 'Durability is a core performance metric. Our gear is built to outlast your strongest sessions.'
+                }
+            }
+        },
+        brandStory: {
+            title: 'Engineered to Adapt.',
+            desc1: 'Every stitch is a commitment to performance. Our SecondSkinStyle™ fabric technology responds to your body\'s movement, creating a zero-distraction environment for your training.',
+            desc2: 'Born in the gym, bred for the streets. We don\'t just make clothes; we engineer armor for the modern athlete.',
+            tech: 'Our Technology',
+            motionCaptured: 'Motion Captured'
+        },
+        editorial: {
+            collection: 'The Collection',
+            defyLimits: 'Defy Limits',
+            exploreNow: 'Explore Now'
+        },
+        shop: {
+            title: 'Shop All',
+            essential: 'Every Performance Essential'
+        },
+        category: {
+            select: 'Select Your Category',
+            viewProducts: 'View Products'
         },
         home: {
             newArrivals: 'New Arrivals',
@@ -185,7 +242,24 @@ export const translations = {
             reviews: 'Reseñas',
             productReviews: 'Reseñas del Producto',
             engineeredPeak: 'Cada detalle ha sido diseñado para un rendimiento máximo. La avanzada tecnología de absorción de humedad se combina con telas premium.',
-            designedAthletes: 'Diseñado con atletas, probado por profesionales, creado para todos los que exigen más de su equipo.'
+            designedAthletes: 'Diseñado con atletas, probado por profesionales, creado para todos los que exigen más de su equipo.',
+            verifiedScore: 'Puntuación Verificada',
+            basedOnReviews: 'Basado en 128 reseñas de la comunidad',
+            showAllReviews: 'Mostrar Todas las Reseñas',
+            exploreEcosystem: 'Explorar Ecosistema',
+            categories: 'Categorías',
+            subCategories: 'Subcategorías',
+            addedToCart: 'Añadido al Carrito',
+            proceedToCart: 'Ir al Carrito',
+            continueShopping: 'Continuar Comprando',
+            verified: 'Verificado',
+            buyNow: 'Comprar Ahora',
+            size: 'Talla',
+            sizeGuide: 'Guía de Tallas',
+            selectSizeError: 'Por favor seleccione una talla',
+            taxesIncluded: 'Impuestos y aranceles incluidos',
+            designNote: 'Nota de Diseño',
+            reviewsCount: '128 Reseñas'
         },
         features: {
             title: 'Características',
@@ -236,6 +310,46 @@ export const translations = {
                 sustainability: 'Sostenibilidad',
                 sustainabilityValue: 'Tela Aprobada por Bluesign®'
             }
+        },
+        about: {
+            behindTheSkin: 'Detrás de la piel',
+            absoluteEvolution: 'Evolución Absoluta',
+            heroDesc: "No solo diseñamos ropa. Construimos el puente entre el potencial humano y la realidad física.",
+            exploreDNA: 'Explora nuestro ADN',
+            philosophy: {
+                engineering: {
+                    title: 'Ingeniería Primero',
+                    desc: 'Cada prenda comienza en el laboratorio, no en el estudio. Priorizamos la estructura molecular sobre los ciclos de tendencias.'
+                },
+                distortion: {
+                    title: 'Cero Distorsión',
+                    desc: 'El verdadero rendimiento es la ausencia de distracción. Nuestra tecnología SecondSkin™ desaparece cuando aumenta la intensidad.'
+                },
+                quality: {
+                    title: 'Calidad Obsesiva',
+                    desc: 'La durabilidad es una métrica de rendimiento fundamental. Nuestro equipo está diseñado para durar más que tus sesiones más fuertes.'
+                }
+            }
+        },
+        brandStory: {
+            title: 'Diseñado para Adaptarse.',
+            desc1: 'Cada puntada es un compromiso con el rendimiento. Nuestra tecnología de tela SecondSkinStyle™ responde al movimiento de su cuerpo, creando un entorno sin distracciones para su entrenamiento.',
+            desc2: 'Nacido en el gimnasio, criado para las calles. No solo hacemos ropa; diseñamos armaduras para el atleta moderno.',
+            tech: 'Nuestra Tecnología',
+            motionCaptured: 'Movimiento Capturado'
+        },
+        editorial: {
+            collection: 'La Colección',
+            defyLimits: 'Desafía los Límites',
+            exploreNow: 'Explora Ahora'
+        },
+        shop: {
+            title: 'Ver Todo',
+            essential: 'Cada Esencial de Rendimiento'
+        },
+        category: {
+            select: 'Selecciona tu Categoría',
+            viewProducts: 'Ver Productos'
         },
         home: {
             newArrivals: 'Recién Llegados',
