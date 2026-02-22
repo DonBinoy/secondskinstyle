@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 const REVIEWS = [
     {
@@ -50,6 +51,7 @@ const REVIEWS = [
 ];
 
 export default function Testimonials() {
+    const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -106,7 +108,7 @@ export default function Testimonials() {
                         viewport={{ once: true }}
                         className="text-5xl md:text-8xl font-bold tracking-tighter text-black mb-4"
                     >
-                        Athlete <span className="text-neutral-400">Stories</span>
+                        {t('testimonials.athlete')} <span className="text-neutral-400">{t('testimonials.stories')}</span>
                     </motion.h2>
                 </div>
 

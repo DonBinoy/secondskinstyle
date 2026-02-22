@@ -3,11 +3,14 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import MagneticButton from './ui/MagneticButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
+    const { t } = useLanguage();
+
     return (
         <section className="relative w-full h-[90vh] overflow-hidden bg-black">
-            {/* ... (Video Background code remains the same) ... */}
+            {/* ... Background Video ... */}
             <div className="absolute inset-0 z-0">
                 <video
                     autoPlay
@@ -33,18 +36,24 @@ export default function Hero() {
                     className="max-w-2xl text-left"
                 >
                     <h2 className="mb-4 text-xl font-bold tracking-widest text-white uppercase md:text-2xl">
-                        New Collection
+                        {t('hero.collection')}
                     </h2>
                     <h1 className="mb-8 text-5xl font-black tracking-tight text-white md:text-7xl lg:text-8xl">
-                        Unleash <br /> Your Power
+                        {t('hero.title').split(' ').map((word: string, i: number) => (
+                            <span key={i} className="block">{word}</span>
+                        ))}
                     </h1>
                     <div className="flex gap-4">
-                        <MagneticButton className="px-8 py-4 text-sm font-bold tracking-wider text-black uppercase bg-white hover:bg-neutral-200">
-                            Shop Women
-                        </MagneticButton>
-                        <MagneticButton className="px-8 py-4 text-sm font-bold tracking-wider text-white uppercase border border-white hover:bg-white hover:text-black">
-                            Shop Men
-                        </MagneticButton>
+                        <Link href="/men">
+                            <MagneticButton className="px-8 py-4 text-sm font-bold tracking-wider text-black uppercase bg-white hover:bg-neutral-200">
+                                {t('hero.shopMen')}
+                            </MagneticButton>
+                        </Link>
+                        <Link href="/women">
+                            <MagneticButton className="px-8 py-4 text-sm font-bold tracking-wider text-white uppercase border border-white hover:bg-white hover:text-black">
+                                {t('hero.shopWomen')}
+                            </MagneticButton>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

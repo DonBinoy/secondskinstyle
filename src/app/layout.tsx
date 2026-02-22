@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 import { CartProvider } from "@/context/CartContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -33,14 +34,16 @@ export default function RootLayout({
       <body
         className={`${jost.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
       >
-        <CartProvider>
-          <SmoothScroll>
-            <Preloader />
-            <CustomCursor />
-            <GrainOverlay />
-            {children}
-          </SmoothScroll>
-        </CartProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <SmoothScroll>
+              <Preloader />
+              <CustomCursor />
+              <GrainOverlay />
+              {children}
+            </SmoothScroll>
+          </CartProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Search, User, Menu, X, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Search, User, Menu, X, ChevronRight, Globe } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { Language } from '@/data/translations';
 
 export default function Navbar({ solid = false }: { solid?: boolean }) {
     const { scrollY } = useScroll();
@@ -14,10 +16,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { cartCount } = useCart();
+    const { language, setLanguage, t } = useLanguage();
 
     const NAV_ITEMS = [
         {
-            label: 'Men',
+            label: t('nav.men'),
             href: '/men',
             dropdown: [
                 { label: 'Tanktop', href: '/men/performance' },
@@ -26,7 +29,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             ]
         },
         {
-            label: 'Women',
+            label: t('nav.women'),
             href: '/women',
             dropdown: [
                 { label: 'Tanktop', href: '/women/seamless' },
@@ -35,8 +38,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 { label: 'Skirts', href: '/women/skirts' }
             ]
         },
-        { label: 'Shop All', href: '/shop' },
-        { label: 'Business', href: '/business' }
+        { label: t('nav.shopAll'), href: '/shop' },
+        { label: t('nav.aboutUs'), href: '/about-us' },
+        { label: t('nav.business'), href: '/business' }
     ];
 
     // Force scrolled state if solid prop is true
@@ -152,7 +156,16 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 </div>
 
                 {/* Right: Icons */}
-                <div className={cn("flex items-center gap-3 md:gap-5", textColor)}>
+                <div className={cn("flex items-center gap-2 md:gap-4", textColor)}>
+                    {/* Language Switcher */}
+                    <button
+                        onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-neutral-100 transition-colors group"
+                    >
+                        <Globe className="w-4 h-4 stroke-[1.5]" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">{language}</span>
+                    </button>
+
                     <button className="p-2 hover:opacity-40 transition-opacity">
                         <Search className="w-5 h-5 stroke-[1.5]" />
                     </button>
@@ -164,7 +177,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             </span>
                         )}
                     </Link>
-                    <button className="lg:hover:opacity-40 transition-opacity p-2">
+                    <button className="hidden sm:block lg:hover:opacity-40 transition-opacity p-2">
                         <User className="w-5 h-5 stroke-[1.5]" />
                     </button>
                 </div>
@@ -203,16 +216,16 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                             {item.label}
                                         </Link>
                                         {item.dropdown && (
-                                            <div className="grid grid-cols-2 gap-y-4 gap-x-8 pl-1">
+                                            <div className="flex flex-col gap-5 pl-1">
                                                 {item.dropdown.map((sub) => (
                                                     <Link
                                                         key={sub.label}
                                                         href={sub.href}
                                                         onClick={() => setIsMenuOpen(false)}
-                                                        className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 hover:text-black flex items-center gap-2 group"
+                                                        className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-400 hover:text-black flex items-center justify-between group py-1"
                                                     >
                                                         {sub.label}
-                                                        <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                                                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                                     </Link>
                                                 ))}
                                             </div>
@@ -227,17 +240,23 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                     transition={{ delay: 0.5 }}
                                     className="pt-10 pb-20 flex flex-col gap-8"
                                 >
-                                    <div className="flex gap-10">
+                                    <div className="flex flex-wrap gap-8">
                                         <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]">
-                                            <Search className="w-4 h-4" /> Search
+                                            <Search className="w-4 h-4" /> {t('nav.search')}
                                         </button>
                                         <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]">
-                                            <User className="w-4 h-4" /> Account
+                                            <User className="w-4 h-4" /> {t('nav.account')}
+                                        </button>
+                                        <button
+                                            onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
+                                            className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#ccff00] bg-black px-4 py-2 rounded-full"
+                                        >
+                                            <Globe className="w-4 h-4" /> {language === 'en' ? 'ESPAÑOL' : 'ENGLISH'}
                                         </button>
                                     </div>
                                     <p className="text-neutral-400 text-[10px] font-medium tracking-widest leading-relaxed">
                                         SecondSkinStyle © 2026<br />
-                                        Premium Performance Apparels
+                                        {language === 'en' ? 'Premium Performance Apparels' : 'Ropa de Alto Rendimiento Premium'}
                                     </p>
                                 </motion.div>
                             </div>

@@ -4,34 +4,37 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-
-const CATEGORIES = [
-    {
-        id: 1,
-        name: 'Men',
-        image: '/image/man.png',
-        link: '/men',
-        description: 'Forged for Performance'
-    },
-    {
-        id: 2,
-        name: 'Women',
-        image: '/image/women.png',
-        link: '/women',
-        description: 'Empower Your Movement'
-    },
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CategoryGrid() {
+    const { t } = useLanguage();
+
+    const CATEGORIES = [
+        {
+            id: 1,
+            name: t('categoryGrid.men'),
+            image: '/image/man.png',
+            link: '/men',
+            description: t('categoryGrid.menDesc')
+        },
+        {
+            id: 2,
+            name: t('categoryGrid.women'),
+            image: '/image/women.png',
+            link: '/women',
+            description: t('categoryGrid.womenDesc')
+        },
+    ];
+
     return (
         <section className="w-full py-0 bg-white border-t border-black">
             <div className="py-12 px-6 md:px-12 border-b border-black flex flex-col items-center justify-center text-center">
                 <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-black mb-2">
-                    Shop By Category
+                    {t('categoryGrid.title')}
                 </h2>
                 <div className="h-1 w-20 bg-black my-4" />
                 <p className="text-neutral-500 text-sm font-bold tracking-[0.2em] uppercase">
-                    Define Your Look
+                    {t('categoryGrid.subtitle')}
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full min-h-[90vh]">

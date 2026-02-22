@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Marquee() {
-    const marqueeText = "NEW COLLECTION DROPPING SOON — SECONDSKINSTYLE — REDEFINING PERFORMANCE — ";
+    const { t } = useLanguage();
+    const marqueeText = t('marquee.text');
 
     return (
         <div className="relative w-full py-4 bg-black overflow-hidden border-y border-zinc-900">
