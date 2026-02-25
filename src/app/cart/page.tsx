@@ -6,20 +6,29 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Minus, Plus, ShoppingBag, ArrowRight, ShieldCheck, Truck, RefreshCw, ChevronRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function CartPage() {
-    const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart();
+    const { cart, removeFromCart, updateQuantity, cartTotal, cartCount, placeOrder } = useCart();
+    const router = useRouter();
     const { t } = useLanguage();
+
+    const handleCheckout = () => {
+        const orderId = placeOrder();
+        if (orderId) {
+            router.push('/orders');
+        }
+    };
 
     return (
         <main className="min-h-screen bg-white selection:bg-black selection:text-white">
             <Navbar solid />
 
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-40 pb-32">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-48 md:pt-40 pb-32">
                 {/* Simplified Header */}
                 <div className="flex flex-col mb-16 border-b border-neutral-100 pb-12">
                     <nav className="flex items-center text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-6">
@@ -170,6 +179,7 @@ export default function CartPage() {
 
                                 <button
                                     disabled={cart.length === 0}
+                                    onClick={handleCheckout}
                                     className="w-full bg-black text-white h-14 md:h-16 font-bold uppercase tracking-[0.3em] text-[10px] hover:bg-neutral-800 transition-all flex items-center justify-center gap-4 disabled:opacity-30 disabled:cursor-not-allowed group"
                                 >
                                     Proceed to Checkout

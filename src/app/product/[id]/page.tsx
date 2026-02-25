@@ -101,7 +101,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         <main className="min-h-screen bg-white">
             <Navbar solid />
 
-            <div className="max-w-[1920px] mx-auto px-4 md:px-10 pt-20 pb-10 md:pt-32 md:pb-20">
+            <div className="max-w-[1920px] mx-auto px-4 md:px-10 pt-32 pb-10 md:pt-32 md:pb-20">
                 {/* Top Breadcrumbs */}
                 <nav className="flex items-center text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6 md:mb-12 overflow-hidden whitespace-nowrap">
                     <Link href="/" className="hover:text-black transition-colors">Home</Link>

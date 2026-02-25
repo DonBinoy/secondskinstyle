@@ -26,24 +26,40 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Links Columns */}
-                    {[
-                        { title: t('footer.shop'), links: ["Shorts", "Tops", "Pants", "Headwear", "Accessories"] },
-                        { title: t('footer.help'), links: ["FAQ", "Delivery", "Return Policy", "Register A Return", "Contact Us", "Payment Options"] }
-                    ].map((col) => (
-                        <div key={col.title} className="col-span-1">
-                            <h3 className="text-base font-bold uppercase tracking-wide mb-6">{col.title}</h3>
-                            <ul className="flex flex-col gap-3">
-                                {col.links.map(link => (
-                                    <li key={link}>
-                                        <Link href="#" className="text-sm text-zinc-400 hover:text-white transition-colors">
-                                            {link}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    {/* Shop Column */}
+                    <div className="col-span-1">
+                        <h3 className="text-base font-bold uppercase tracking-wide mb-6">{t('footer.shop')}</h3>
+                        <ul className="flex flex-col gap-3">
+                            {["Shorts", "Tops", "Pants", "Headwear", "Accessories"].map(link => (
+                                <li key={link}>
+                                    <Link href="/shop" className="text-sm text-zinc-400 hover:text-white transition-colors">
+                                        {link}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Help Column */}
+                    <div className="col-span-1">
+                        <h3 className="text-base font-bold uppercase tracking-wide mb-6">{t('footer.help')}</h3>
+                        <ul className="flex flex-col gap-3">
+                            {[
+                                { label: t('footer.links.faq'), href: '/faq' },
+                                { label: t('footer.links.delivery'), href: '/delivery' },
+                                { label: t('footer.links.returnPolicy'), href: '/returns' },
+                                { label: t('footer.links.registerReturn'), href: '/returns' },
+                                { label: t('footer.links.customOrders'), href: '/custom-orders' },
+                                { label: t('footer.links.contactUs'), href: '/contact' }
+                            ].map((item, i) => (
+                                <li key={i}>
+                                    <Link href={item.href} className="text-sm text-zinc-400 hover:text-white transition-colors">
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
                 {/* Bottom Bar */}

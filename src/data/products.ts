@@ -182,5 +182,202 @@ export const PRODUCTS = [
         subcategory: "Training",
         gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
+    },
+    {
+        id: "aero-edge-tank-top",
+        name: "Aero Edge - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Edge Tank Top features sharp, angular textures inspired by precision and control. Designed for athletes who demand structure, stability, and performance from their gear.",
+        details: [
+            "Technical stretch fabric for unrestricted movement",
+            "Fast-dry technology",
+            "Ergonomic racerback design",
+            "Clean, modern performance look",
+            "Use: Running | Cross-training"
+        ],
+        image: "/image/product/AERO_EDGE-TANKTOP.jpeg",
+        images: ["/image/product/AERO_EDGE-TANKTOP.jpeg", "/image/product/AERO_EDGE-TANKTOP(1).jpeg"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Black"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-stride-tank-top",
+        name: "Aero Stride - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Stride Tank Top is inspired by forward momentum. The horizontal line pattern visually represents pace and consistency, built for runners who focus on distance and rhythm.",
+        details: [
+            "High breathability for long sessions",
+            "Moisture-management technology",
+            "Lightweight, non-restrictive fit",
+            "Racerback for full range of motion",
+            "Clean and aerodynamic look",
+            "Use: Distance running | Daily training"
+        ],
+        image: "/image/product/AERO_STRIDE-TANKTOP.png",
+        images: ["/image/product/AERO_STRIDE-TANKTOP.png"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue / Cyan"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-pulse-tank-top",
+        name: "Aero Pulse - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Pulse Tank Top is built for high-intensity runs where focus and pace matter most. The horizontal micro-stripe design enhances the feeling of speed, while the lightweight fabric keeps the body cool and dry under pressure.",
+        details: [
+            "Ultra-lightweight performance fabric",
+            "Breathable, moisture-wicking construction",
+            "Racerback cut for full shoulder mobility",
+            "Smooth seams to reduce friction",
+            "Ideal for racing and interval training",
+            "Use: Running | Speed workouts | Competition"
+        ],
+        image: "/image/product/AERO_PULSE - TANK_TOP.jpeg",
+        images: ["/image/product/AERO_PULSE - TANK_TOP.jpeg", "/image/product/AERO_PULSE-TANK_TOP1.jpeg"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Red"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-flow-tank-top",
+        name: "Aero Flow - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Flow Tank Top is designed for smooth, effortless movement. Its fluid wave pattern reflects natural motion, while the breathable construction keeps the body cool during extended runs.",
+        details: [
+            "Soft, airy performance fabric",
+            "Excellent ventilation",
+            "Lightweight feel for endurance sessions",
+            "Stretch construction for comfort",
+            "Ideal for warm-weather training",
+            "Use: Endurance runs | Summer training | Recovery runs"
+        ],
+        image: "/image/product/AERO_FLOW-TANKTOP.png",
+        images: ["/image/product/AERO_FLOW-TANKTOP.png"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Blue"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-v-tank-top",
+        name: "Aero V - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero V Tank Top is built around direction and speed. The V-inspired gradient design emphasizes forward motion, making it ideal for race focused athletes.",
+        details: [
+            "Aerodynamic silhouette",
+            "Breathable performance fabric",
+            "Lightweight construction",
+            "Secure athletic fit",
+            "Designed for competition use",
+            "Use: Racing | Tempo runs | Performance training"
+        ],
+        image: "/image/product/AERO_V-TANKTOP.png",
+        images: ["/image/product/AERO_V-TANKTOP.png"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Dark / Gradient"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-fusion-tank-top",
+        name: "Aero Fusion - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Fusion Tank Top blends multiple textures and tones to reflect power and motion coming together. Designed for runners who train hard and move fast.",
+        details: [
+            "Advanced lightweight fabric",
+            "Sweat-wicking and fast-dry",
+            "High stretch for dynamic movement",
+            "Comfortable flat seams",
+            "Bold performance design",
+            "Use: Running | High-intensity workouts"
+        ],
+        image: "/image/product/AERO_FUSION_TANK_TOP.jpeg",
+        images: ["/image/product/AERO_FUSION_TANK_TOP.jpeg", "/image/product/AERO_FUSION_TANK_TOP_1.jpeg", "/image/product/AERO_FUSION_TANK_TOP_2.jpeg"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Multi-tone"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-grid-tank-top",
+        name: "Aero Grid - Tank Top",
+        price: 24.00,
+        currency: "€",
+        description: "The Aero Grid Tank Top combines performance with a modern, data driven aesthetic. The vertical grid pattern represents precision and rhythm, making it ideal for runners who train with purpose.",
+        details: [
+            "Lightweight breathable fabric",
+            "Sweat-wicking and quick-dry finish",
+            "Vertical design enhances streamlined look",
+            "Comfortable second-skin feel",
+            "Minimal branding for a premium finish",
+            "Use: Running | Daily training | Long runs"
+        ],
+        image: "/image/product/AERO_GRID-TANKTOP.png",
+        images: ["/image/product/AERO_GRID-TANKTOP.png"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["White"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-core-round-neck",
+        name: "Aero Core - Round Neck",
+        price: 20.00,
+        currency: "€",
+        description: "The Aero Core Tee features a vertical data-inspired graphic representing rhythm and performance tracking. A versatile performance tee suitable for running and everyday training.",
+        details: [
+            "Lightweight and breathable",
+            "Sweat-wicking fabric",
+            "Comfortable athletic fit",
+            "Minimal, modern design",
+            "Easy to style for training",
+            "Use: Running | Training"
+        ],
+        image: "/image/product/AERO_CORE-ROUNDNECK.png",
+        images: ["/image/product/AERO_CORE-ROUNDNECK.png"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["White"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
+    },
+    {
+        id: "aero-drift-round-neck",
+        name: "Aero Drift - Round Neck",
+        price: 20.00,
+        currency: "€",
+        description: "The Aero Drift Tee is designed for relaxed performance and everyday movement. Its smooth gradient pattern and lightweight feel make it ideal for recovery days and warm climates.",
+        details: [
+            "Soft performance fabric",
+            "Breathable and quick-dry",
+            "Comfortable all-day wear",
+            "Lightweight construction",
+            "Clean, premium finish",
+            "Use: Light training | Recovery"
+        ],
+        image: "/image/product/AERO_DRIFT-ROUND_NECK.jpeg",
+        images: ["/image/product/AERO_DRIFT-ROUND_NECK.jpeg", "/image/product/AERO_DRIFT-ROUND_NECK(1).jpeg", "/image/product/AERO_DRIFT-ROUND_NECK(2).jpeg"],
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Soft gradient tone"],
+        category: "Tops",
+        subcategory: "Performance",
+        gender: "Men"
     }
 ];

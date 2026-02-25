@@ -22,7 +22,7 @@ export default function FilteredListingPage({ params }: { params: Promise<{ gend
         <main className="min-h-screen bg-white">
             <Navbar solid />
 
-            <div className="max-w-[1920px] mx-auto px-6 md:px-12 pt-32 pb-20">
+            <div className="max-w-[1920px] mx-auto px-6 md:px-12 pt-36 md:pt-32 pb-20">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 mb-8">
                     <Link href="/" className="hover:text-black transition-colors">Home</Link>

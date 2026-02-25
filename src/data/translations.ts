@@ -209,7 +209,70 @@ export const translations = {
             tagline: 'Engineered for those who demand more. We exist to unite the conditioning community.',
             shop: 'Shop',
             help: 'Help',
-            rights: 'All rights reserved.'
+            rights: 'All rights reserved.',
+            links: {
+                faq: 'FAQ',
+                delivery: 'Delivery',
+                returnPolicy: 'Return Policy',
+                registerReturn: 'Register A Return',
+                customOrders: 'Custom Team Orders',
+                contactUs: 'Contact Us'
+            }
+        },
+        info: {
+            faq: {
+                title: 'FAQ',
+                q1: 'What makes SecondSkinStyle premium sportswear?',
+                a1: 'SecondSkinStyle is designed with high-performance fabrics, body-contouring fits, moisture-wicking technology, and durability for intense training. Our pieces are engineered to feel like a second skin — lightweight, breathable, and supportive.',
+                q2: 'Are your products true to size?',
+                a2: 'Yes. We recommend ordering your usual size. If you are between sizes, check our Size Guide for precise measurements.',
+                q3: 'How should I wash my sportswear?',
+                a3: 'Wash cold (30°C), inside out. Do not tumble dry. Avoid fabric softeners to maintain stretch and performance quality.',
+                q4: 'Do you restock sold-out items?',
+                a4: 'Some core collections are restocked. Limited drops may not return.',
+                q5: 'Do you ship internationally?',
+                a5: 'Yes, we ship worldwide. Delivery times and costs vary by location.'
+            },
+            delivery: {
+                title: 'Delivery',
+                processing: 'Processing Time',
+                processingDesc: 'Orders are processed within 1–2 business days (excluding weekends and holidays).',
+                shippingTimes: 'Shipping Times',
+                domestic: 'Domestic: 2–5 business days',
+                international: 'International: 5–10 business days',
+                fees: 'Shipping Fees',
+                feesDesc: 'Calculated at checkout. Free shipping available on qualifying orders.',
+                tracking: 'Tracking',
+                trackingDesc: 'Once shipped, you will receive a confirmation email with tracking details.'
+            },
+            returns: {
+                title: 'Return Policy',
+                policyTitle: 'Return Policy',
+                policy1: 'Returns accepted within 14 days of delivery.',
+                policy2: 'Items must be unworn, unwashed, have original tags attached, and be in original packaging.',
+                policy3: 'Non-returnable items include final sale items and gift cards.',
+                policy4: 'Refunds are processed within 5–7 business days after inspection.',
+                registerTitle: 'Register A Return',
+                registerStep1: '1. Email support@secondskinstyle.com',
+                registerStep2: '2. Include your order number',
+                registerStep3: '3. State the reason for return',
+                registerNote: 'You will receive return instructions within 24–48 hours.'
+            },
+            custom: {
+                title: 'Custom Team Orders',
+                desc1: 'We customize premium sportswear for teams, gyms, clubs, and organizations.',
+                desc2: 'Whether you need branded training sets, competition kits, or performance wear with your team logo, SecondSkinStyle delivers premium quality tailored to your identity.',
+                contact: 'For team customization and bulk orders, contact:',
+                email: 'Business@secondskinstyle.com'
+            },
+            contact: {
+                title: 'Contact Us',
+                location: 'Registered Location',
+                locationDesc: 'Elmont, New York, United States',
+                email: 'Customer Support Email',
+                responseTime: 'Response Time',
+                responseDesc: '24–48 business hours (Monday–Friday)'
+            }
         }
     },
     es: {
@@ -420,7 +483,70 @@ export const translations = {
             tagline: 'Diseñado para quienes exigen más. Existimos para unir a la comunidad del acondicionamiento.',
             shop: 'Tienda',
             help: 'Ayuda',
-            rights: 'Todos los derechos reservados.'
+            rights: 'Todos los derechos reservados.',
+            links: {
+                faq: 'FAQ',
+                delivery: 'Envío',
+                returnPolicy: 'Política de Devolución',
+                registerReturn: 'Registrar Devolución',
+                customOrders: 'Pedidos Personalizados',
+                contactUs: 'Contáctenos'
+            }
+        },
+        info: {
+            faq: {
+                title: 'FAQ',
+                q1: '¿Qué hace que SecondSkinStyle sea ropa deportiva premium?',
+                a1: 'SecondSkinStyle está diseñado con telas de alto rendimiento, ajustes que contornean el cuerpo, tecnología de absorción de humedad y durabilidad para entrenamientos intensos. Nuestras piezas están diseñadas para sentirse como una segunda piel: ligeras, transpirables y de apoyo.',
+                q2: '¿Sus productos son de talla real?',
+                a2: 'Sí. Recomendamos pedir su talla habitual. Si está entre dos tallas, consulte nuestra Guía de tallas para obtener medidas precisas.',
+                q3: '¿Cómo debo lavar mi ropa deportiva?',
+                a3: 'Lavar en frío (30°C), del revés. No usar secadora. Evite los suavizantes de telas para mantener la elasticidad y la calidad del rendimiento.',
+                q4: '¿Reponen artículos agotados?',
+                a4: 'Se reponen algunas colecciones principales. Es posible que los lanzamientos limitados no regresen.',
+                q5: '¿Realizan envíos internacionales?',
+                a5: 'Sí, realizamos envíos a todo el mundo. Los tiempos y costos de entrega varían según la ubicación.'
+            },
+            delivery: {
+                title: 'Envío',
+                processing: 'Tiempo de Procesamiento',
+                processingDesc: 'Los pedidos se procesan en un plazo de 1 a 2 días hábiles (excluyendo fines de semana y feriados).',
+                shippingTimes: 'Tiempos de Envío',
+                domestic: 'Nacional: 2–5 días hábiles',
+                international: 'Internacional: 5–10 días hábiles',
+                fees: 'Gastos de Envío',
+                feesDesc: 'Calculados al pagar. Envío gratuito disponible en pedidos calificados.',
+                tracking: 'Seguimiento',
+                trackingDesc: 'Una vez enviado, recibirá un correo electrónico de confirmación con los detalles de seguimiento.'
+            },
+            returns: {
+                title: 'Política de Devolución',
+                policyTitle: 'Política de Devolución',
+                policy1: 'Se aceptan devoluciones dentro de los 14 días posteriores a la entrega.',
+                policy2: 'Los artículos deben estar sin usar, sin lavar, tener las etiquetas originales y estar en el embalaje original.',
+                policy3: 'Los artículos que no se pueden devolver incluyen artículos de venta final y tarjetas de regalo.',
+                policy4: 'Los reembolsos se procesan dentro de 5 a 7 días hábiles después de la inspección.',
+                registerTitle: 'Registrar una Devolución',
+                registerStep1: '1. Envíe un correo electrónico a support@secondskinstyle.com',
+                registerStep2: '2. Incluya su número de pedido',
+                registerStep3: '3. Indique el motivo de la devolución',
+                registerNote: 'Recibirá instrucciones de devolución en un plazo de 24 a 48 horas.'
+            },
+            custom: {
+                title: 'Pedidos Personalizados para Equipos',
+                desc1: 'Personalizamos ropa deportiva premium para equipos, gimnasios, clubes y organizaciones.',
+                desc2: 'Ya sea que necesite conjuntos de entrenamiento con marca, kits de competencia o ropa de rendimiento con el logotipo de su equipo, SecondSkinStyle ofrece calidad premium adaptada a su identidad.',
+                contact: 'Para personalización de equipos y pedidos al por mayor, contacte a:',
+                email: 'Business@secondskinstyle.com'
+            },
+            contact: {
+                title: 'Contáctenos',
+                location: 'Ubicación Registrada',
+                locationDesc: 'Elmont, Nueva York, Estados Unidos',
+                email: 'Correo de Soporte al Cliente',
+                responseTime: 'Tiempo de Respuesta',
+                responseDesc: '24–48 horas hábiles (Lunes–Viernes)'
+            }
         }
     }
 };

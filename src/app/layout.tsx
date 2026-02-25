@@ -19,6 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SecondSkinStyle | Premium Sports Apparels",
   description: "Experience the ultimate in performance and style with SecondSkinStyle.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 import { CartProvider } from "@/context/CartContext";

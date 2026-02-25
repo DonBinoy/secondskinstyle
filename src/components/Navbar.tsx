@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Language } from '@/data/translations';
+import Image from 'next/image';
 
 export default function Navbar({ solid = false }: { solid?: boolean }) {
     const { scrollY } = useScroll();
@@ -40,6 +41,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         },
         { label: t('nav.shopAll'), href: '/shop' },
         { label: t('nav.aboutUs'), href: '/about-us' },
+        { label: 'My Orders', href: '/orders' },
         { label: t('nav.business'), href: '/business' }
     ];
 
@@ -105,8 +107,22 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             <Menu className={cn("w-6 h-6", textColor)} />
                         )}
                     </button>
-                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("text-xl md:text-2xl font-semibold tracking-[-0.05em] leading-none", textColor)}>
-                        SecondSkin<span className="text-neutral-300">Style</span>
+                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("flex items-center gap-2", textColor)}>
+                        <Image
+                            src="/logosecondskin.svg"
+                            alt="SecondSkinStyle Logo"
+                            width={48}
+                            height={48}
+                            className={cn(
+                                "w-10 h-10 md:w-12 md:h-12 transition-all duration-300 active:scale-95",
+                                isVisibleBg || isMenuOpen ? "brightness-0" : ""
+                            )}
+                        />
+                        <div className="flex flex-col">
+                            <span className="text-base md:text-lg font-bold tracking-tighter leading-none uppercase italic">
+                                SecondSkin<span className="text-neutral-400">Style</span>
+                            </span>
+                        </div>
                     </Link>
                 </div>
 
@@ -190,7 +206,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-40 bg-white lg:hidden"
+                        className="fixed inset-0 z-40 bg-white lg:hidden text-black"
                     >
                         <motion.div
                             initial={{ x: "-100%" }}
