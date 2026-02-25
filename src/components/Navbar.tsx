@@ -24,8 +24,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             label: t('nav.men'),
             href: '/men',
             dropdown: [
-                { label: 'Tanktop', href: '/men/performance' },
-                { label: 'Roundneck', href: '/men/training' },
+                { label: 'Tanktop', href: '/men/tanktop' },
+                { label: 'Roundneck', href: '/men/roundneck' },
                 { label: 'Shorts', href: '/men/shorts' }
             ]
         },
@@ -33,10 +33,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             label: t('nav.women'),
             href: '/women',
             dropdown: [
-                { label: 'Tanktop', href: '/women/seamless' },
-                { label: 'Roundneck', href: '/women/training' },
-                { label: 'Shorts', href: '/women/shorts' },
-                { label: 'Skirts', href: '/women/skirts' }
+                { label: 'Tanktop', href: '/women/tanktop' },
+                { label: 'Roundneck', href: '/women/roundneck' },
+                { label: 'Shorts', href: '/women/shorts' }
             ]
         },
         { label: t('nav.shopAll'), href: '/shop' },

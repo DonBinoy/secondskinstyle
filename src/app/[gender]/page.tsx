@@ -4,7 +4,7 @@ import { use } from 'react';
 import { PRODUCTS } from '@/data/products';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/image';
+
 import CustomLink from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
@@ -23,11 +23,9 @@ export default function CategoryLandingPage({ params }: { params: Promise<{ gend
 
     // Mock images for subcategories (using existing ones or placeholders)
     const subcategoryImages: Record<string, string> = {
-        'Performance': '/image/product/product1.jpg',
-        'Training': '/image/trainingtee.png',
+        'Tanktop': '/image/airpulseseamless.png',
+        'Roundneck': '/image/trainingtee.png',
         'Shorts': '/image/flexshort.png',
-        'Seamless': '/image/pulseseamelesstank.png',
-        'Skirts': '/image/aeroskort.png'
     };
 
     return (

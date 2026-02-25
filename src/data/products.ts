@@ -19,7 +19,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL", "XXL"],
         colors: ["Neon Green", "Black", "Grey"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Roundneck",
         gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -42,7 +42,7 @@ export const PRODUCTS = [
         sizes: ["XS", "S", "M", "L"],
         colors: ["Lavender", "Black", "White"],
         category: "Tops",
-        subcategory: "Seamless",
+        subcategory: "Tanktop",
         gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -64,7 +64,7 @@ export const PRODUCTS = [
         sizes: ["XS", "S", "M", "L", "XL"],
         colors: ["White", "Black", "Pink"],
         category: "Bottoms",
-        subcategory: "Skirts",
+        subcategory: "Shorts",
         gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -109,7 +109,7 @@ export const PRODUCTS = [
         sizes: ["XS", "S", "M", "L"],
         colors: ["Mint", "White", "Black"],
         category: "Tops",
-        subcategory: "Seamless",
+        subcategory: "Tanktop",
         gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -120,7 +120,7 @@ export const PRODUCTS = [
         originalPrice: 50.00,
         discount: "-20%",
         currency: "€",
-        description: "Experience uliimate flexibility with FlexPro Seamless. Designed for yoga, pilates, and low-impact training.",
+        description: "Experience ultimate flexibility with FlexPro Seamless. Designed for yoga, pilates, and low-impact training.",
         details: [
             "Buttery soft fabric",
             "High-waisted fit",
@@ -132,7 +132,7 @@ export const PRODUCTS = [
         sizes: ["XS", "S", "M", "L", "XL"],
         colors: ["Grey", "Black"],
         category: "Bottoms",
-        subcategory: "Seamless",
+        subcategory: "Shorts",
         gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -156,7 +156,7 @@ export const PRODUCTS = [
         sizes: ["XS", "S", "M", "L"],
         colors: ["Blue", "Black", "White"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -179,7 +179,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL", "XXL"],
         colors: ["Red", "Black", "Navy"],
         category: "Tops",
-        subcategory: "Training",
+        subcategory: "Roundneck",
         gender: "Men",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
@@ -201,7 +201,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Black"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -223,7 +223,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Blue / Cyan"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -245,7 +245,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Red"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -267,7 +267,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Blue"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -289,7 +289,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Dark / Gradient"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -311,7 +311,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Multi-tone"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -333,7 +333,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["White"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Tanktop",
         gender: "Men"
     },
     {
@@ -355,7 +355,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["White"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Roundneck",
         gender: "Men"
     },
     {
@@ -377,7 +377,7 @@ export const PRODUCTS = [
         sizes: ["S", "M", "L", "XL"],
         colors: ["Soft gradient tone"],
         category: "Tops",
-        subcategory: "Performance",
+        subcategory: "Roundneck",
         gender: "Men"
     }
 ];
