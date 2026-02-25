@@ -11,10 +11,15 @@ import { PRODUCTS } from '@/data/products';
 import { useLanguage } from '@/context/LanguageContext';
 
 const NEW_ARRIVALS = [
-    PRODUCTS.find(p => p.id === 'voltmesh-performance-tee')!,
-    PRODUCTS.find(p => p.id === 'pulse-seamless-tank')!,
-    PRODUCTS.find(p => p.id === 'aeroskort')!,
-    PRODUCTS.find(p => p.id === 'flexshort-pro')!
+    PRODUCTS.find(p => p.id === 'aero-edge-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-stride-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-pulse-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-flow-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-v-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-fusion-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-grid-tank-top')!,
+    PRODUCTS.find(p => p.id === 'aero-core-round-neck')!,
+    PRODUCTS.find(p => p.id === 'aero-drift-round-neck')!,
 ].filter(Boolean); // Safety check
 
 export default function NewArrivals() {

@@ -88,14 +88,14 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 animate={hidden ? "hidden" : "visible"}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className={cn(
-                    "fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 transition-all duration-500",
+                    "fixed top-0 inset-x-0 z-50 flex items-center justify-between gap-2 px-4 md:px-12 py-5 transition-all duration-500",
                     isMenuOpen ? "bg-white border-b" : bgColor,
                     isVisibleBg ? "border-b shadow-sm" : "",
                     borderColor
                 )}
             >
                 {/* Left: Mobile Menu & Logo */}
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
                     <button
                         className="lg:hidden p-2 -ml-2 transition-transform active:scale-95"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -106,7 +106,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             <Menu className={cn("w-6 h-6", textColor)} />
                         )}
                     </button>
-                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("flex items-center gap-2", textColor)}>
+                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("flex items-center gap-2 min-w-0", textColor)}>
                         <Image
                             src="/logosecondskin.svg"
                             alt="SecondSkinStyle Logo"
@@ -117,8 +117,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                 isVisibleBg || isMenuOpen ? "brightness-0" : ""
                             )}
                         />
-                        <div className="flex flex-col">
-                            <span className="text-base md:text-lg font-bold tracking-tighter leading-none uppercase italic">
+                        <div className="flex flex-col min-w-0">
+                            <span className="text-sm md:text-lg font-bold tracking-tighter leading-none uppercase italic truncate">
                                 SecondSkin<span className="text-neutral-400">Style</span>
                             </span>
                         </div>
@@ -171,7 +171,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 </div>
 
                 {/* Right: Icons */}
-                <div className={cn("flex items-center gap-2 md:gap-4", textColor)}>
+                <div className={cn("flex items-center gap-1 md:gap-4 flex-shrink-0", textColor)}>
                     {/* Language Switcher */}
                     <button
                         onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
