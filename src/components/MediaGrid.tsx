@@ -222,6 +222,14 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex, isMounted, isDe
     const isHovered = hoveredIndex === index;
     const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
     const itemNumber = (index + 1).toString().padStart(2, '0');
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (item.type === 'video' && videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => { });
+        }
+    }, [item.src]);
 
     return (
         <motion.div
@@ -246,6 +254,7 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex, isMounted, isDe
                 )}>
                     {item.type === 'video' ? (
                         <video
+                            ref={videoRef}
                             className="w-full h-full object-cover"
                             src={item.src}
                             autoPlay

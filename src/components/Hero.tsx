@@ -1,18 +1,30 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import MagneticButton from './ui/MagneticButton';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
     const { t } = useLanguage();
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(error => {
+                console.error("Video play failed:", error);
+            });
+        }
+    }, []);
 
     return (
         <section className="relative w-full h-[90vh] overflow-hidden bg-black">
             {/* ... Background Video ... */}
             <div className="absolute inset-0 z-0">
                 <video
+                    ref={videoRef}
                     autoPlay
                     muted
                     loop

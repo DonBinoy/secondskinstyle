@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,6 +14,15 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function AboutUs() {
     const { t } = useLanguage();
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => { });
+        }
+    }, []);
+
     return (
         <main className="flex flex-col min-h-screen bg-black text-white selection:bg-white selection:text-black">
             <Navbar solid={false} />
@@ -22,6 +32,7 @@ export default function AboutUs() {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black/60 z-10" />
                     <video
+                        ref={videoRef}
                         autoPlay
                         muted
                         loop

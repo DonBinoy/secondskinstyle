@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, use, useEffect } from 'react';
+import { useState, use, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -56,6 +56,19 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
     const { addToCart } = useCart();
     const router = useRouter();
+    const videoRefGallery = useRef<HTMLVideoElement>(null);
+    const videoRefPromo = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRefGallery.current) {
+            videoRefGallery.current.muted = true;
+            videoRefGallery.current.play().catch(() => { });
+        }
+        if (videoRefPromo.current) {
+            videoRefPromo.current.muted = true;
+            videoRefPromo.current.play().catch(() => { });
+        }
+    }, [product.id]);
 
     // Get recommended products (2 items)
     const recommendedProducts = PRODUCTS.filter(p => p.id !== product.id).slice(0, 2);
@@ -201,7 +214,15 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         <div className="flex flex-row gap-4 lg:gap-2 h-[60vh] lg:h-[80vh] min-h-[400px] lg:min-h-[500px] overflow-x-auto lg:overflow-hidden snap-x snap-mandatory hide-scrollbar pb-4 lg:pb-0 px-4 lg:px-0">
                             {product.video && (
                                 <div className="relative flex-none w-[85vw] lg:flex-1 bg-neutral-100 snap-center rounded-sm overflow-hidden">
-                                    <video src={product.video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+                                    <video
+                                        ref={videoRefGallery}
+                                        src={product.video}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
                                 </div>
                             )}
                             <div className="relative flex-none w-[85vw] lg:flex-1 bg-neutral-50 snap-center rounded-sm overflow-hidden">
@@ -336,7 +357,15 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     </div>
                 </div>
                 <div className="w-full lg:w-3/5 relative min-h-[60vh] lg:min-h-full">
-                    <video src="/video/promo.mp4" autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+                    <video
+                        ref={videoRefPromo}
+                        src="/video/promo.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
                 </div>
             </section>
 

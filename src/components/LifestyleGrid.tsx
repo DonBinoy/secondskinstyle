@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -38,6 +38,22 @@ const LIFESTYLE_ITEMS = [
 export default function LifestyleGrid() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const videoRefDesktop = useRef<HTMLVideoElement>(null);
+    const videoRefMobile = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const desktopVideo = videoRefDesktop.current;
+        const mobileVideo = videoRefMobile.current;
+
+        if (desktopVideo) {
+            desktopVideo.muted = true;
+            desktopVideo.play().catch(() => { });
+        }
+        if (mobileVideo) {
+            mobileVideo.muted = true;
+            mobileVideo.play().catch(() => { });
+        }
+    }, [currentIndex]); // Re-trigger for mobile slide change if needed, though mobile slides are key-swapped
 
     useEffect(() => {
         if (isPaused) return;
@@ -68,6 +84,7 @@ export default function LifestyleGrid() {
                     className="col-span-8 row-span-2 relative rounded-[40px] overflow-hidden group shadow-xl"
                 >
                     <video
+                        ref={videoRefDesktop}
                         src={LIFESTYLE_ITEMS[0].src}
                         autoPlay
                         muted
@@ -173,6 +190,7 @@ export default function LifestyleGrid() {
                         {currentItem.type === 'video' && (
                             <div className="relative w-full h-full">
                                 <video
+                                    ref={videoRefMobile}
                                     src={currentItem.src}
                                     autoPlay
                                     muted
