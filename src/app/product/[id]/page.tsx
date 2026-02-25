@@ -128,12 +128,12 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     {/* Left: Image Gallery */}
                     <div className="w-full lg:w-3/5 flex flex-col gap-20">
                         {/* 1. Main Image */}
-                        <div className="relative w-[95%] lg:w-[85%] mx-auto aspect-square bg-neutral-100 overflow-hidden group">
+                        <div className="relative w-[85%] lg:w-[80%] mx-auto aspect-[3/4] bg-neutral-50 overflow-hidden group">
                             <Image
                                 src={product.image}
                                 alt={product.name}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 priority
                             />
                         </div>
