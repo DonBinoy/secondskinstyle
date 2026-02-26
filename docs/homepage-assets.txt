@@ -1,0 +1,19 @@
+SECTION	ITEM NAME	TYPE	DIMENSIONS (W x H)	ASPECT RATIO	NOTES
+---	---	---	---	---	---
+HERO SECTION	Hero Background	Video	1920 x 1080 px	16:9	Full-screen video. Keep subjects centered.
+CATEGORY GRID	Men Category	Image	1500 x 1500 px	1:1	Background image for Men's section.
+CATEGORY GRID	Women Category	Image	1500 x 1500 px	1:1	Background image for Women's section.
+JOURNAL GRID	Item 01 (Endurance)	Video	1500 x 1500 px	1:1	Large Bento Item (Square)
+JOURNAL GRID	Item 02 (Focus)	Image	800 x 800 px	1:1	Small Bento Item (Square)
+JOURNAL GRID	Item 03 (Power)	Video	800 x 800 px	1:1	Small Bento Item (Square)
+JOURNAL GRID	Item 04 (Urban Flow)	Video	1600 x 800 px	2:1	Wide Bento Item
+JOURNAL GRID	Item 05 (Precision)	Image	800 x 1600 px	1:2	Tall Bento Item
+JOURNAL GRID	Item 06 (Motion)	Video	800 x 800 px	1:1	Small Bento Item (Square)
+JOURNAL GRID	Item 07 (Style)	Image	1600 x 800 px	2:1	Wide Bento Item
+TESTIMONIALS	Athlete Story 01	Image	1600 x 1200 px	4:3	Main display image for review.
+TESTIMONIALS	Athlete Story 02	Image	1600 x 1200 px	4:3	Main display image for review.
+TESTIMONIALS	Athlete Story 03	Image	1600 x 1200 px	4:3	Main display image for review.
+TESTIMONIALS	Athlete Story 04	Image	1600 x 1200 px	4:3	Main display image for review.
+TESTIMONIALS	Athlete Story 05	Image	1600 x 1200 px	4:3	Main display image for review.
+NEW ARRIVALS	Product Image	Image	1200 x 1500 px	4:5	Individual product shots for slider.
+NEWSLETTER	Banner (Optional)	Image	1920 x 600 px	3.2:1	Optional background for footer section.

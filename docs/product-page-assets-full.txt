@@ -1,0 +1,15 @@
+SECTION	ITEM NAME	TYPE	DIMENSIONS (W x H)	ASPECT RATIO	NOTES
+---	---	---	---	---	---
+PRODUCT HEADER	Main Gallery Image	Image	1500 x 2000 px	3:4	Primary product shot (Front). Vertical format.
+PRODUCT GALLERY (Slider)	Action Video	Video	1200 x 1600 px	3:4	Short action/performance loop.
+PRODUCT GALLERY (Slider)	Detail Shot 01	Image	1200 x 1600 px	3:4	Close-up or alternate angle.
+PRODUCT GALLERY (Slider)	Detail Shot 02	Image	1200 x 1600 px	3:4	Close-up or alternate angle.
+PRODUCT FEATURES	Fabric Macro Image	Image	1920 x 1080 px	16:9	Detailed fabric texture shot (Used in Fabric tab).
+PRODUCT FEATURES	Fit Silhouette	Image	1200 x 1600 px	3:4	Model fit/contour shot (Used in Fit tab).
+LIFESTYLE GRID	Campaign Film	Video	1920 x 1080 px	16:9	Main lifestyle video (Bento Grid large item).
+LIFESTYLE GRID	Style Edit Image	Image	1200 x 1600 px	3:4	Vertical campaign photo (Bento Grid vertical item).
+LIFESTYLE GRID	Technical Edge Image	Image	1920 x 1080 px	16:9	Wide campaign photo (Bento Grid horizontal item).
+PROMO SECTION	Performance Video	Video	1920 x 1080 px	16:9	Full-width promo/tech video at bottom of page.
+RECOMMENDATIONS	Related Product	Image	1200 x 1600 px	3:4	"Complete the Look" product thumbnail.
+REVIEWS	User Photo	Image	800 x 800 px	1:1	Customer review photo (Optional).
+FOOTER	Newsletter Background	Image	1920 x 600 px	3.2:1	Optional wide banner for footer background.
