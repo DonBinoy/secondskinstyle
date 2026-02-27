@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Jost, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Preloader from "@/components/ui/Preloader";
-
-const jost = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { CartProvider } from "@/context/CartContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "SecondSkinStyle | Premium Sports Apparels",
@@ -26,9 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { CartProvider } from "@/context/CartContext";
-import { LanguageProvider } from "@/context/LanguageContext";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,8 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={`${jost.variable} ${geistMono.variable} antialiased bg-white text-black font-sans`}
+        className="antialiased bg-white text-black font-sans"
       >
         <LanguageProvider>
           <CartProvider>

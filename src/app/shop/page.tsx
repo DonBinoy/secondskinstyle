@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 function ShopContent() {
