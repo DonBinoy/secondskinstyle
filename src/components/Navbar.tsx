@@ -9,6 +9,7 @@ import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { Language } from '@/data/translations';
 import Image from 'next/image';
+import RegionModal from './RegionModal';
 
 export default function Navbar({ solid = false }: { solid?: boolean }) {
     const { scrollY } = useScroll();
@@ -18,6 +19,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { cartCount } = useCart();
     const { language, setLanguage, t } = useLanguage();
+    const [isRegionModalOpen, setIsRegionModalOpen] = useState(false);
 
     const NAV_ITEMS = [
         {
@@ -106,7 +108,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             <Menu className={cn("w-6 h-6", textColor)} />
                         )}
                     </button>
-                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("flex items-center gap-2 min-w-0", textColor)}>
+                    <Link href="/" onClick={() => setIsMenuOpen(false)} className={cn("flex items-center gap-0 min-w-0", textColor)}>
                         <Image
                             src="/logosecondskin.svg"
                             alt="SecondSkinStyle Logo"
@@ -117,9 +119,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                 isVisibleBg || isMenuOpen ? "brightness-0" : ""
                             )}
                         />
-                        <div className="flex flex-col min-w-0">
+                        <div className="flex flex-col min-w-0 -ml-2 md:-ml-3">
                             <span className="text-sm md:text-lg font-bold tracking-tighter leading-none uppercase italic truncate">
-                                SecondSkin<span className="text-neutral-400">Style</span>
+                                econdSkinStyle
                             </span>
                         </div>
                     </Link>
@@ -127,9 +129,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
                 {/* Center: Links (Desktop) */}
                 <div className={cn("hidden lg:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.3em]", textColor)}>
-                    {NAV_ITEMS.map((item) => (
+                    {NAV_ITEMS.map((item, idx) => (
                         <div
-                            key={item.label}
+                            key={`nav-desktop-${idx}-${item.label}`}
                             className="relative group py-4"
                             onMouseEnter={() => setActiveDropdown(item.label)}
                             onMouseLeave={() => setActiveDropdown(null)}
@@ -146,6 +148,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             <AnimatePresence>
                                 {activeDropdown === item.label && item.dropdown && (
                                     <motion.div
+                                        key={`dropdown-${item.label}`}
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
@@ -153,9 +156,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                         className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
                                     >
                                         <div className="bg-white/95 backdrop-blur-md border border-neutral-100 shadow-xl p-6 min-w-[200px] flex flex-col gap-4 text-black">
-                                            {item.dropdown.map((sub) => (
+                                            {item.dropdown.map((sub, sIdx) => (
                                                 <Link
-                                                    key={sub.label}
+                                                    key={`sub-${sIdx}-${sub.label}`}
                                                     href={sub.href}
                                                     className="opacity-60 hover:opacity-100 transition-opacity hover:translate-x-1 duration-300"
                                                 >
@@ -175,10 +178,10 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     {/* Language Switcher */}
                     <button
                         onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-neutral-100 transition-colors group"
+                        className="flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full hover:bg-neutral-100 transition-colors group"
                     >
                         <Globe className="w-4 h-4 stroke-[1.5]" />
-                        <span className="text-[10px] font-black uppercase tracking-widest">{language}</span>
+                        <span className="hidden xs:block text-[10px] font-black uppercase tracking-widest">{language}</span>
                     </button>
 
                     <button className="p-2 hover:opacity-40 transition-opacity">
@@ -192,7 +195,10 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             </span>
                         )}
                     </Link>
-                    <button className="hidden sm:block lg:hover:opacity-40 transition-opacity p-2">
+                    <button
+                        onClick={() => setIsRegionModalOpen(true)}
+                        className="flex items-center justify-center lg:hover:opacity-40 transition-opacity p-2"
+                    >
                         <User className="w-5 h-5 stroke-[1.5]" />
                     </button>
                 </div>
@@ -202,12 +208,14 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
+                        key="mobile-menu-overlay"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-40 bg-white lg:hidden text-black"
                     >
                         <motion.div
+                            key="mobile-menu-content"
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
@@ -217,7 +225,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                             <div className="flex flex-col gap-10">
                                 {NAV_ITEMS.map((item, idx) => (
                                     <motion.div
-                                        key={item.label}
+                                        key={`mobile-nav-group-${item.label}-${idx}`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 + idx * 0.1 }}
@@ -232,9 +240,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                         </Link>
                                         {item.dropdown && (
                                             <div className="flex flex-col gap-5 pl-1">
-                                                {item.dropdown.map((sub) => (
+                                                {item.dropdown.map((sub, sIdx) => (
                                                     <Link
-                                                        key={sub.label}
+                                                        key={`mobile-sub-link-${sub.label}-${sIdx}`}
                                                         href={sub.href}
                                                         onClick={() => setIsMenuOpen(false)}
                                                         className="text-[11px] font-black uppercase tracking-[0.3em] text-neutral-400 hover:text-black flex items-center justify-between group py-1"
@@ -245,7 +253,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                                 ))}
                                             </div>
                                         )}
-                                        <div className="h-[1px] w-full bg-neutral-100" />
+                                        <div key={`divider-${idx}`} className="h-[1px] w-full bg-neutral-100" />
                                     </motion.div>
                                 ))}
 
@@ -259,7 +267,13 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                         <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]">
                                             <Search className="w-4 h-4" /> {t('nav.search')}
                                         </button>
-                                        <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]">
+                                        <button
+                                            onClick={() => {
+                                                setIsRegionModalOpen(true);
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]"
+                                        >
                                             <User className="w-4 h-4" /> {t('nav.account')}
                                         </button>
                                         <button
@@ -279,6 +293,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            <RegionModal
+                isOpen={isRegionModalOpen}
+                onClose={() => setIsRegionModalOpen(false)}
+            />
         </>
     );
 }

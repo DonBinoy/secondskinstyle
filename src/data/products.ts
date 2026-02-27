@@ -180,7 +180,7 @@ export const PRODUCTS = [
         colors: ["Red", "Black", "Navy"],
         category: "Tops",
         subcategory: "Roundneck",
-        gender: "Men",
+        gender: "Women",
         modelEmbedUrl: "https://sketchfab.com/models/5a0900dbd71542d082ff7b32a78205b5/embed"
     },
     {
@@ -378,6 +378,6 @@ export const PRODUCTS = [
         colors: ["Soft gradient tone"],
         category: "Tops",
         subcategory: "Roundneck",
-        gender: "Men"
+        gender: "Women"
     }
 ];

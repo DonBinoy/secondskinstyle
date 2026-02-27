@@ -1,8 +1,9 @@
 'use client';
 
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
 
 export default function Footer() {
     const { t } = useLanguage();
@@ -18,7 +19,7 @@ export default function Footer() {
                             {t('footer.tagline')}
                         </p>
                         <div className="flex gap-4 mt-2">
-                            {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
+                            {[Instagram, Facebook, Youtube].map((Icon, i) => (
                                 <a key={i} href="#" className="p-2 bg-zinc-900 rounded-full hover:bg-white hover:text-black transition-all">
                                     <Icon size={18} />
                                 </a>
@@ -30,9 +31,9 @@ export default function Footer() {
                     <div className="col-span-1">
                         <h3 className="text-base font-bold uppercase tracking-wide mb-6">{t('footer.shop')}</h3>
                         <ul className="flex flex-col gap-3">
-                            {["Shorts", "Tops", "Pants", "Headwear", "Accessories"].map(link => (
+                            {["Shorts", "Tanktop", "Roundneck"].map(link => (
                                 <li key={link}>
-                                    <Link href="/shop" className="text-sm text-zinc-400 hover:text-white transition-colors">
+                                    <Link href={`/shop?subcategory=${link.toLowerCase()}`} className="text-sm text-zinc-400 hover:text-white transition-colors">
                                         {link}
                                     </Link>
                                 </li>

@@ -37,13 +37,13 @@ export default function CustomOrdersPage() {
 
                     <a
                         href={`mailto:${t('info.custom.email')}`}
-                        className="group flex flex-col md:flex-row md:items-center gap-6 md:gap-12"
+                        className="group flex flex-row items-center gap-3 sm:gap-6 md:gap-12 w-fit max-w-full"
                     >
-                        <span className="text-4xl md:text-7xl font-black tracking-tighter text-black hover:bg-black hover:text-white transition-all duration-500 px-4 py-2 break-all italic">
+                        <span className="text-[5.5vw] sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter text-black hover:bg-black hover:text-white transition-all duration-500 px-2 sm:px-4 py-2 whitespace-nowrap italic shrink min-w-0">
                             {t('info.custom.email')}
                         </span>
-                        <div className="w-16 h-16 rounded-full border border-black flex items-center justify-center group-hover:bg-[#ccff00] group-hover:border-[#ccff00] transition-all duration-500">
-                            <ArrowRight className="w-6 h-6" />
+                        <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full border border-black flex-shrink-0 flex items-center justify-center group-hover:bg-[#ccff00] group-hover:border-[#ccff00] transition-all duration-500">
+                            <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6" />
                         </div>
                     </a>
                 </div>
