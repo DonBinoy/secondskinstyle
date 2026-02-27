@@ -14,7 +14,7 @@ export default function MediaGrid() {
         {
             id: 1,
             type: 'video',
-            src: '/video/sports.mp4',
+            src: '/video/Endurance.mp4',
             className: 'col-span-2 row-span-2 md:col-span-2 md:row-span-2',
             title: t('mediaGrid.items.endurance'),
             subtitle: t('mediaGrid.items.pushBeyond'),
@@ -36,7 +36,7 @@ export default function MediaGrid() {
         {
             id: 3,
             type: 'video',
-            src: '/video/sports.mp4',
+            src: '/video/Power.mp4',
             className: 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
             title: t('mediaGrid.items.power'),
             subtitle: t('mediaGrid.items.rawEnergy'),
@@ -58,7 +58,7 @@ export default function MediaGrid() {
         {
             id: 5,
             type: 'image',
-            src: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop',
+            src: '/image/precision.jpg',
             className: 'col-span-1 row-span-2 md:col-span-1 md:row-span-2',
             title: t('mediaGrid.items.precision'),
             subtitle: t('mediaGrid.items.everyDetail'),
@@ -69,7 +69,7 @@ export default function MediaGrid() {
         {
             id: 6,
             type: 'video',
-            src: '/video/sports.mp4',
+            src: '/video/motion.mp4',
             className: 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
             title: t('mediaGrid.items.motion'),
             subtitle: t('mediaGrid.items.unstoppable'),

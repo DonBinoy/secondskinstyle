@@ -13,14 +13,14 @@ export default function CategoryGrid() {
         {
             id: 1,
             name: t('categoryGrid.men'),
-            image: '/image/man.png',
+            image: '/image/man1.jpg',
             link: '/men',
             description: t('categoryGrid.menDesc')
         },
         {
             id: 2,
             name: t('categoryGrid.women'),
-            image: '/image/women.png',
+            image: '/image/women1.png',
             link: '/women',
             description: t('categoryGrid.womenDesc')
         },

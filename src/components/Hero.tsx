@@ -31,7 +31,7 @@ export default function Hero() {
                     playsInline
                     className="object-cover w-full h-full opacity-90"
                 >
-                    <source src="/video/sports.mp4" type="video/mp4" />
+                    <source src="/video/Herosection.mp4" type="video/mp4" />
                     <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
                         <span className="text-white">Video Placeholder</span>
                     </div>
