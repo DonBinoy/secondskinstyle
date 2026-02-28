@@ -5,6 +5,7 @@ import { motion, useSpring, useMotionValue, useTransform, AnimatePresence } from
 import { cn } from '@/lib/utils';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import Link from 'next/link';
 
 export default function MediaGrid() {
     const { t } = useLanguage();
@@ -13,6 +14,7 @@ export default function MediaGrid() {
     const MEDIA_ITEMS = [
         {
             id: 1,
+            slug: 'endurance',
             type: 'video',
             src: '/video/Endurance.mp4',
             className: 'col-span-2 row-span-2 md:col-span-2 md:row-span-2',
@@ -24,6 +26,7 @@ export default function MediaGrid() {
         },
         {
             id: 2,
+            slug: 'focus',
             type: 'image',
             src: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop',
             className: 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
@@ -35,6 +38,7 @@ export default function MediaGrid() {
         },
         {
             id: 3,
+            slug: 'power',
             type: 'video',
             src: '/video/Power.mp4',
             className: 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
@@ -46,6 +50,7 @@ export default function MediaGrid() {
         },
         {
             id: 4,
+            slug: 'urban-flow',
             type: 'video',
             src: '/video/sports.mp4',
             className: 'col-span-2 row-span-1 md:col-span-2 md:row-span-1',
@@ -57,6 +62,7 @@ export default function MediaGrid() {
         },
         {
             id: 5,
+            slug: 'precision',
             type: 'image',
             src: '/image/precision.jpg',
             className: 'col-span-1 row-span-2 md:col-span-1 md:row-span-2',
@@ -68,6 +74,7 @@ export default function MediaGrid() {
         },
         {
             id: 6,
+            slug: 'motion',
             type: 'video',
             src: '/video/motion.mp4',
             className: 'col-span-1 row-span-1 md:col-span-1 md:row-span-1',
@@ -79,6 +86,7 @@ export default function MediaGrid() {
         },
         {
             id: 7,
+            slug: 'style',
             type: 'image',
             src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop',
             className: 'col-span-2 row-span-1 md:col-span-1 md:row-span-1',
@@ -91,6 +99,9 @@ export default function MediaGrid() {
     ];
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const cursorRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -115,16 +126,40 @@ export default function MediaGrid() {
             mouseY.set(e.clientY);
         };
         window.addEventListener('mousemove', moveCursor);
+
+        // Intersection Observer for mobile focus
+        const options = {
+            root: containerRef.current,
+            threshold: 0.6,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            if (window.innerWidth <= 1024) {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Number(entry.target.getAttribute('data-index'));
+                        setActiveIndex(index);
+                        setHoveredIndex(index);
+                    }
+                });
+            }
+        }, options);
+
+        cardRefs.current.forEach((card) => {
+            if (card) observer.observe(card);
+        });
+
         return () => {
             window.removeEventListener('resize', checkDevice);
             window.removeEventListener('mousemove', moveCursor);
+            observer.disconnect();
         };
     }, [mouseX, mouseY]);
 
     return (
         <section className={cn("w-full py-16 md:py-24 bg-white text-black overflow-hidden relative", isDesktop && "cursor-none")}>
             {/* Fluid Cursor - Only visible on desktop */}
-            {/* ... cursor logic remains ... */}
             {isDesktop && (
                 <motion.div
                     ref={cursorRef}
@@ -164,7 +199,7 @@ export default function MediaGrid() {
             />
 
             <div className="max-w-[1920px] mx-auto relative z-10">
-                <div className="mb-12 md:mb-24 px-6 md:px-8 flex flex-col md:flex-row justify-between items-end border-b border-black/10 pb-6">
+                <div className="mb-12 md:mb-24 px-6 md:px-8 flex flex-col items-center text-center border-b border-black/10 pb-12">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +208,7 @@ export default function MediaGrid() {
                     >
                         {t('mediaGrid.journal')}
                     </motion.h2>
-                    <motion.div className="flex items-center gap-4 mt-4 md:mt-0 opacity-60">
+                    <motion.div className="flex items-center gap-4 mt-6 opacity-60">
                         <p className="text-sm font-medium uppercase tracking-widest text-neutral-400">
                             {t('mediaGrid.stories')}
                         </p>
@@ -181,6 +216,7 @@ export default function MediaGrid() {
                 </div>
 
                 <div
+                    ref={containerRef}
                     className={cn(
                         "flex md:grid md:grid-cols-4 md:auto-rows-[350px] gap-4 md:gap-4 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory px-6 md:px-8 pb-8 no-scrollbar scroll-smooth",
                         "flex-nowrap md:flex-wrap"
@@ -188,15 +224,22 @@ export default function MediaGrid() {
                     onMouseLeave={() => setHoveredIndex(null)}
                 >
                     {MEDIA_ITEMS.map((item, i) => (
-                        <FocusCard
+                        <div
                             key={item.id}
-                            item={item}
-                            index={i}
-                            hoveredIndex={hoveredIndex}
-                            setHoveredIndex={setHoveredIndex}
-                            isMounted={isMounted}
-                            isDesktop={isDesktop}
-                        />
+                            ref={(el) => { cardRefs.current[i] = el; }}
+                            data-index={i}
+                            className={cn("snap-center shrink-0", item.className)}
+                            style={{ width: (isMounted && !isDesktop) ? item.mobileWidth : undefined }}
+                        >
+                            <FocusCard
+                                item={item}
+                                index={i}
+                                hoveredIndex={hoveredIndex}
+                                setHoveredIndex={setHoveredIndex}
+                                isMounted={isMounted}
+                                isDesktop={isDesktop}
+                            />
+                        </div>
                     ))}
                 </div>
 
@@ -207,7 +250,7 @@ export default function MediaGrid() {
                             key={i}
                             className={cn(
                                 "h-0.5 transition-all duration-500 rounded-full",
-                                i === 0 ? "w-8 bg-black" : "w-1.5 bg-black/10"
+                                activeIndex === i ? "w-8 bg-black" : "w-1.5 bg-black/10"
                             )}
                         />
                     ))}
@@ -227,23 +270,17 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex, isMounted, isDe
     useEffect(() => {
         if (item.type === 'video' && videoRef.current) {
             videoRef.current.muted = true;
+            videoRef.current.playsInline = true;
             videoRef.current.play().catch(() => { });
         }
     }, [item.src]);
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.05 }}
-            className={cn(
-                "relative overflow-hidden group rounded-sm transition-all duration-700 ease-out",
-                "flex-shrink-0 md:w-auto h-[500px] md:h-auto snap-center md:snap-align-none",
-                item.className,
-                isDimmed ? "opacity-30 blur-[2px] scale-95 grayscale" : "opacity-100 scale-100 grayscale-0"
-            )}
-            style={{ width: (isMounted && !isDesktop) ? item.mobileWidth : undefined }}
+        <Link href={`/journal/${item.slug}`} className={cn(
+            "relative overflow-hidden group rounded-sm transition-all duration-700 ease-out",
+            "block w-full h-[500px] md:h-full",
+            isDimmed ? "opacity-30 blur-[2px] scale-95 grayscale" : "opacity-100 scale-100 grayscale-0"
+        )}
             onMouseEnter={() => setHoveredIndex(index)}
         >
             {/* Visual Media with Zoom on Hover */}
@@ -338,6 +375,6 @@ function FocusCard({ item, index, hoveredIndex, setHoveredIndex, isMounted, isDe
                 </div>
             </motion.div>
 
-        </motion.div>
+        </Link>
     );
 }

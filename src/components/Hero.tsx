@@ -13,8 +13,9 @@ export default function Hero() {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.muted = true;
+            videoRef.current.playsInline = true;
             videoRef.current.play().catch(error => {
-                console.error("Video play failed:", error);
+                console.warn("Video play failed:", error);
             });
         }
     }, []);

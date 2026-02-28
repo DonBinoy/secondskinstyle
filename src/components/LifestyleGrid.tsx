@@ -47,10 +47,12 @@ export default function LifestyleGrid() {
 
         if (desktopVideo) {
             desktopVideo.muted = true;
+            desktopVideo.playsInline = true;
             desktopVideo.play().catch(() => { });
         }
         if (mobileVideo) {
             mobileVideo.muted = true;
+            mobileVideo.playsInline = true;
             mobileVideo.play().catch(() => { });
         }
     }, [currentIndex]); // Re-trigger for mobile slide change if needed, though mobile slides are key-swapped

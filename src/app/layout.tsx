@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Preloader from "@/components/ui/Preloader";
+import CookieConsent from "@/components/ui/CookieConsent";
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
               <Preloader />
               <CustomCursor />
               <GrainOverlay />
+              <CookieConsent />
               {children}
             </SmoothScroll>
           </CartProvider>

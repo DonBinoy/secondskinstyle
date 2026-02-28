@@ -62,10 +62,12 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     useEffect(() => {
         if (videoRefGallery.current) {
             videoRefGallery.current.muted = true;
+            videoRefGallery.current.playsInline = true;
             videoRefGallery.current.play().catch(() => { });
         }
         if (videoRefPromo.current) {
             videoRefPromo.current.muted = true;
+            videoRefPromo.current.playsInline = true;
             videoRefPromo.current.play().catch(() => { });
         }
     }, [product.id]);
@@ -577,6 +579,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             <SizeGuideDrawer
                 isOpen={showSizeGuide}
                 onClose={() => setShowSizeGuide(false)}
+                category={product.category}
+                subcategory={product.subcategory}
+                gender={product.gender}
             />
         </main >
     );

@@ -80,6 +80,66 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         }
     });
 
+    // Auto-Region Detection (Privacy Compliant)
+    useEffect(() => {
+        const checkRegion = async () => {
+            const savedRegion = localStorage.getItem('selected-region');
+            const cookieConsent = localStorage.getItem('cookie-consent');
+
+            if (savedRegion) return; // Choice already made
+
+            // If no cookie consent choice has been made yet, we wait.
+            // Our CookieConsent component shows with a delay, so we check again periodically
+            // or we could use a custom event. For simplicity and robustness, let's poll slightly 
+            // until a choice is found in localStorage, or just wait for the user to interact.
+
+            if (!cookieConsent) {
+                // Wait for the user to engage with the cookie banner
+                const interval = setInterval(() => {
+                    const latestConsent = localStorage.getItem('cookie-consent');
+                    if (latestConsent) {
+                        clearInterval(interval);
+                        handleConsentChoice(latestConsent);
+                    }
+                }, 1000);
+                return () => clearInterval(interval);
+            } else {
+                handleConsentChoice(cookieConsent);
+            }
+        };
+
+        const handleConsentChoice = async (consent: string) => {
+            if (consent === 'accepted') {
+                try {
+                    const response = await fetch('https://ipapi.co/json/');
+                    const data = await response.json();
+                    const countryCode = data.country_code;
+
+                    let detectedId = 'row';
+                    if (countryCode === 'US') detectedId = 'us';
+                    else if (countryCode === 'GB') detectedId = 'uk';
+                    else if (['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE'].includes(countryCode)) detectedId = 'eu';
+                    else if (['AE', 'SA', 'QA', 'KW', 'OM', 'BH'].includes(countryCode)) detectedId = 'ae';
+                    else if (countryCode === 'CA') detectedId = 'ca';
+
+                    if (detectedId !== 'row') {
+                        localStorage.setItem('selected-region', detectedId);
+                    } else {
+                        setIsRegionModalOpen(true);
+                    }
+                } catch (error) {
+                    setIsRegionModalOpen(true);
+                }
+            } else {
+                // If they declined cookies, we MUST NOT fetch IP.
+                // We show the manual modal so they can still select a region safely.
+                setIsRegionModalOpen(true);
+            }
+        };
+
+        checkRegion();
+    }, []);
+
     return (
         <>
             <motion.nav
@@ -119,9 +179,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                                 isVisibleBg || isMenuOpen ? "brightness-0" : ""
                             )}
                         />
-                        <div className="flex flex-col min-w-0 -ml-2 md:-ml-3">
+                        <div className="flex flex-col min-w-0 -ml-0 md:-ml-0">
                             <span className="text-sm md:text-lg font-bold tracking-tighter leading-none uppercase italic truncate">
-                                econdSkinStyle
+                                SecondSkinStyle
                             </span>
                         </div>
                     </Link>

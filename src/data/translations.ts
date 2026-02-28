@@ -151,6 +151,13 @@ export const translations = {
             placeholder: 'ENTER YOUR EMAIL',
             subscribe: 'Subscribe'
         },
+        cookies: {
+            title: 'Cookie & Location Consent',
+            description: 'We use cookies and your anonymized IP address to enhance your experience, analyze traffic, and automatically detect your region for localized services. By clicking "Accept", you consent to our use of these protocols.',
+            accept: 'Accept',
+            decline: 'Decline',
+            settings: 'Settings'
+        },
         marquee: {
             text: 'NEW COLLECTION DROPPING SOON — SECONDSKINSTYLE — REDEFINING PERFORMANCE — '
         },
@@ -167,6 +174,11 @@ export const translations = {
             stories: 'Stories & Campaigns',
             readArticle: 'Read Article',
             view: 'View',
+            categories: {
+                campaign: 'Campaign',
+                story: 'Story',
+                editorial: 'Editorial'
+            },
             items: {
                 endurance: 'Endurance',
                 pushBeyond: 'Push Beyond',
@@ -182,6 +194,15 @@ export const translations = {
                 unstoppable: 'Unstoppable',
                 style: 'Style',
                 futureReady: 'Future Ready'
+            },
+            descriptions: {
+                endurance: "Endurance is dominance over fatigue. When others fade, you accelerate. SecondSkinStyle is built for those who outlast.",
+                focus: "Focus eliminates weakness. Discipline turns vision into victory. SecondSkinStyle is made for locked-in performers.",
+                power: "Power is controlled aggression. Explode with intention, move with authority. SecondSkinStyle amplifies every force you create.",
+                urbanFlow: "The city is your arena. Move sharp. Move fearless. SecondSkinStyle blends street dominance with performance precision.",
+                precision: "Precision separates elite from average. Every detail matters. Every movement counts. SecondSkinStyle is engineered for exact execution.",
+                motion: "Motion is evolution. Stillness is regression. SecondSkinStyle is designed to move without limits.",
+                style: "Style is silent confidence. Presence without permission. SecondSkinStyle defines performance with identity."
             }
         },
         testimonials: {
@@ -425,6 +446,13 @@ export const translations = {
             placeholder: 'INGRESA TU EMAIL',
             subscribe: 'Suscribirse'
         },
+        cookies: {
+            title: 'Consentimiento de Cookies y Ubicación',
+            description: 'Utilizamos cookies y su dirección IP anonimizada para mejorar su experiencia, analizar el tráfico y detectar automáticamente su región para servicios localizados. Al hacer clic en "Aceptar", usted acepta nuestro uso de estos protocolos.',
+            accept: 'Aceptar',
+            decline: 'Rechazar',
+            settings: 'Ajustes'
+        },
         marquee: {
             text: 'NUEVA COLECCIÓN PRÓXIMAMENTE — SECONDSKINSTYLE — REDEFINIENDO EL RENDIMIENTO — '
         },
@@ -441,6 +469,11 @@ export const translations = {
             stories: 'Historias y Campañas',
             readArticle: 'Leer Artículo',
             view: 'Ver',
+            categories: {
+                campaign: 'Campaña',
+                story: 'Historia',
+                editorial: 'Editorial'
+            },
             items: {
                 endurance: 'Resistencia',
                 pushBeyond: 'Supera los Límites',
@@ -456,6 +489,15 @@ export const translations = {
                 unstoppable: 'Imparable',
                 style: 'Estilo',
                 futureReady: 'Listo para el Futuro'
+            },
+            descriptions: {
+                endurance: "La resistencia es el dominio sobre la fatiga. Cuando otros se desvanecen, tú aceleras. SecondSkinStyle está hecho para los que perduran.",
+                focus: "El enfoque elimina la debilidad. La disciplina convierte la visión en victoria. SecondSkinStyle está hecho para los que actúan concentrados.",
+                power: "El poder es agresión controlada. Explota con intención, muévete con autoridad. SecondSkinStyle amplifica cada fuerza que creas.",
+                urbanFlow: "La ciudad es tu arena. Muévete con agudeza. Muévete sin miedo. SecondSkinStyle combina el dominio callejero con la precisión del rendimiento.",
+                precision: "La precisión separa a la élite del promedio. Cada detalle importa. Cada movimiento cuenta. SecondSkinStyle está diseñado para una ejecución exacta.",
+                motion: "El movimiento es evolución. La quietud es regresión. SecondSkinStyle está diseñado para moverse sin límites.",
+                style: "El estilo es confianza silenciosa. Presencia sin permiso. SecondSkinStyle define el rendimiento con identidad."
             }
         },
         testimonials: {
