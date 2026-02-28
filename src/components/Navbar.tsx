@@ -181,7 +181,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                         />
                         <div className="flex flex-col min-w-0 -ml-0 md:-ml-0">
                             <span className="text-sm md:text-lg font-bold tracking-tighter leading-none uppercase italic truncate">
-                                SecondSkinStyle
+                                SecondSkin<span className="text-neutral-500">Style</span>
                             </span>
                         </div>
                     </Link>
