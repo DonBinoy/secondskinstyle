@@ -98,6 +98,14 @@ export const translations = {
                 structureValue: 'Micro-perforated hexagonal knit',
                 sustainability: 'Sustainability',
                 sustainabilityValue: 'Bluesign® Approved Fabric'
+            },
+            care: {
+                intro: 'To maintain the technical integrity and lifespan of your SecondSkinStyle garments, follow these precise care protocols.',
+                cold: 'Machine wash cold (30°C) on a gentle cycle',
+                bleach: 'Do not bleach or use fabric softeners',
+                dry: 'Tumble dry low or hang in shade for best results',
+                iron: 'Do not iron directly on performance logos',
+                colors: 'Wash with similar technical colors only'
             }
         },
         about: {
@@ -393,6 +401,14 @@ export const translations = {
                 structureValue: 'Punto hexagonal microperforado',
                 sustainability: 'Sostenibilidad',
                 sustainabilityValue: 'Tela Aprobada por Bluesign®'
+            },
+            care: {
+                intro: 'Para mantener la integridad técnica y la vida útil de sus prendas SecondSkinStyle, siga estos protocolos de cuidado precisos.',
+                cold: 'Lavar a máquina en frío (30°C) en ciclo delicado',
+                bleach: 'No usar lejía ni suavizantes de telas',
+                dry: 'Secar en secadora a baja temperatura o colgar a la sombra',
+                iron: 'No planchar directamente sobre los logotipos de rendimiento',
+                colors: 'Lavar solo con colores técnicos similares'
             }
         },
         about: {
