@@ -51,7 +51,7 @@ export default function ProductImageSlider({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="relative w-full h-full p-2 lg:p-4"
+                    className="relative w-full h-full p-2"
                 >
                     <Image
                         src={imageList[currentIndex]}
@@ -83,30 +83,6 @@ export default function ProductImageSlider({
                         <ChevronRight className="w-6 h-6 stroke-[1.5px]" />
                         <div className="absolute inset-0 bg-black/5 rounded-full scale-0 group-hover/arrow:scale-100 transition-transform duration-300" />
                     </button>
-
-                    {/* Elegant Line Indicators */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-                        {imageList.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    setCurrentIndex(i);
-                                }}
-                                className="relative py-2 px-1 focus:outline-none"
-                            >
-                                <div
-                                    className={cn(
-                                        "h-[2px] transition-all duration-500 rounded-full",
-                                        currentIndex === i
-                                            ? "w-8 bg-black"
-                                            : "w-4 bg-black/10 hover:bg-black/30"
-                                    )}
-                                />
-                            </button>
-                        ))}
-                    </div>
                 </>
             )}
         </div>
