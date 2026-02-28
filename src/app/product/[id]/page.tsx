@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
+import ProductImageSlider from '@/components/ProductImageSlider';
 
 const getColorClass = (color: string) => {
     const map: Record<string, string> = {
@@ -92,7 +93,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             name: product.name,
             price: product.price,
             currency: product.currency || '$',
-            image: product.image,
+            image: Array.isArray(product.image) ? product.image[0] : product.image,
             size: selectedSize,
             color: selectedColor,
             quantity: quantity
@@ -130,12 +131,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     {/* Left: Image Gallery */}
                     <div className="w-full lg:w-3/5 flex flex-col gap-20">
                         {/* 1. Main Image */}
-                        <div className="relative w-[85%] lg:w-[80%] mx-auto aspect-[3/4] bg-neutral-50 overflow-hidden group">
-                            <Image
-                                src={product.image}
+                        <div className="relative w-[80%] lg:w-[70%] mx-auto aspect-square bg-white overflow-hidden group">
+                            <ProductImageSlider
+                                images={product.image}
                                 alt={product.name}
-                                fill
-                                className="object-contain"
+                                className="w-full h-full"
                                 priority
                             />
                         </div>
@@ -215,7 +215,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         {/* 3. Media Slider (1 Video, 2 Images) */}
                         <div className="flex flex-row gap-4 lg:gap-2 h-[60vh] lg:h-[80vh] min-h-[400px] lg:min-h-[500px] overflow-x-auto lg:overflow-hidden snap-x snap-mandatory hide-scrollbar pb-4 lg:pb-0 px-4 lg:px-0">
                             {product.video && (
-                                <div className="relative flex-none w-[85vw] lg:flex-1 bg-neutral-100 snap-center rounded-sm overflow-hidden">
+                                <div className="relative flex-none w-[85vw] lg:flex-1 bg-white snap-center rounded-sm overflow-hidden">
                                     <video
                                         ref={videoRefGallery}
                                         src={product.video}
@@ -223,15 +223,15 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                         muted
                                         loop
                                         playsInline
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        className="absolute inset-0 w-full h-full object-cover scale-110"
                                     />
                                 </div>
                             )}
-                            <div className="relative flex-none w-[85vw] lg:flex-1 bg-neutral-50 snap-center rounded-sm overflow-hidden">
-                                <Image src={product.images?.[0] || product.image} alt="Front" fill className="object-cover" />
+                            <div className="relative flex-none w-[85vw] lg:flex-1 bg-white snap-center rounded-sm overflow-hidden">
+                                <Image src={(Array.isArray(product.images) ? product.images[0] : product.images) || (Array.isArray(product.image) ? product.image[0] : product.image)} alt="Front" fill className="object-cover" />
                             </div>
-                            <div className="relative flex-none w-[85vw] lg:flex-1 bg-neutral-50 snap-center rounded-sm overflow-hidden">
-                                <Image src={product.images?.[1] || product.image} alt="Back" fill className="object-cover" />
+                            <div className="relative flex-none w-[85vw] lg:flex-1 bg-white snap-center rounded-sm overflow-hidden">
+                                <Image src={(Array.isArray(product.images) ? product.images[1] : product.images) || (Array.isArray(product.image) ? product.image[0] : product.image)} alt="Back" fill className="object-cover" />
                             </div>
                         </div>
                     </div>
@@ -314,8 +314,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8">
                         {recommendedProducts.map((rec) => (
                             <Link href={`/product/${rec.id}`} key={rec.id} className="group flex flex-col gap-6">
-                                <div className="relative w-full aspect-[3/4] bg-neutral-50 overflow-hidden border border-neutral-100">
-                                    <Image src={rec.image} alt={rec.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="relative w-full aspect-[3/4] bg-white overflow-hidden border border-neutral-100">
+                                    <Image src={Array.isArray(rec.image) ? rec.image[0] : rec.image} alt={rec.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <div className="bg-white/90 backdrop-blur-sm px-4 py-3 text-[10px] font-black uppercase tracking-widest text-black transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             View Product

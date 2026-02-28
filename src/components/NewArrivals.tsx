@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ProductImageSlider from './ProductImageSlider';
 
 import Link from 'next/link';
 import { PRODUCTS } from '@/data/products';
@@ -100,16 +101,16 @@ export default function NewArrivals() {
                                             {/* Image Side - Left */}
                                             <div className="w-full md:w-1/2 flex items-center justify-center">
                                                 <motion.div
-                                                    className="relative w-full aspect-[4/5] max-w-[280px]"
+                                                    className="relative w-full aspect-square max-w-[280px]"
                                                     whileHover={{ scale: 1.05 }}
                                                     transition={{ duration: 0.5, ease: "easeOut" }}
                                                 >
-                                                    <Image
-                                                        src={product.image}
+                                                    <ProductImageSlider
+                                                        images={product.image}
                                                         alt={product.name}
-                                                        fill
+                                                        className="w-full h-full"
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        className="object-contain"
+                                                        showArrows={false}
                                                     />
                                                 </motion.div>
                                             </div>

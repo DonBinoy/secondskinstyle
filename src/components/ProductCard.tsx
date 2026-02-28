@@ -3,12 +3,14 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
+import ProductImageSlider from './ProductImageSlider';
+
 interface ProductCardProps {
     name: string;
     price: string;
     originalPrice?: string;
     discount?: string;
-    image?: string;
+    image?: string | string[];
     className?: string;
     tag?: string; // e.g. "NEW"
 }
@@ -17,7 +19,7 @@ export default function ProductCard({ name, price, originalPrice, discount, imag
     return (
         <div className={cn("flex flex-col group cursor-pointer", className)}>
             {/* Image Container */}
-            <div className="relative w-full aspect-[4/5] bg-neutral-100 mb-4 overflow-hidden">
+            <div className="relative w-full aspect-square bg-white mb-4 overflow-hidden">
                 {/* Badges */}
                 <div className="absolute left-2 bottom-2 z-10 flex flex-col gap-2">
                     {tag && (
@@ -41,11 +43,11 @@ export default function ProductCard({ name, price, originalPrice, discount, imag
 
                 {/* Image */}
                 {image ? (
-                    <Image
-                        src={image}
+                    <ProductImageSlider
+                        images={image}
                         alt={name}
-                        fill
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="h-full w-full"
+                        showArrows={false}
                     />
                 ) : (
                     <div className="absolute inset-0 bg-neutral-200" />

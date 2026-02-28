@@ -196,8 +196,9 @@ export const PRODUCTS = [
             "Clean, modern performance look",
             "Use: Running | Cross-training"
         ],
-        image: "/image/product/AERO_EDGE-TANKTOP1.jpeg",
-        images: ["/image/product/AERO_EDGE-TANKTOP1.jpeg", "/image/product/AERO_EDGE-TANKTOP(1).jpeg"],
+        image: ["/image/product/AERO_EDGE-TANKTOP1.jpeg", "/image/product/AERO_EDGE-TANKTOP(2).jpg"],
+        images: ["/image/product/AERO_EDGE-TANKTOP(1).jpeg", "/image/product/AERO_EDGE-TANKTOP(2).jpg"],
+        video: "/video/aero-edge.mp4",
         sizes: ["S", "M", "L", "XL"],
         colors: ["Black"],
         category: "Tops",
